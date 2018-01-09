@@ -1,0 +1,93 @@
+<!doctype html>
+<html ng-app="vliegdutch">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VliegDutch</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="/bower_components/jquery-ui/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/bower_components/angularjs-slider/dist/rzslider.css"/>
+    <link rel="stylesheet" href="/bower_components/components-font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/bower_components/owl.carousel/dist/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="/bower_components/owl.carousel/dist/assets/owl.theme.default.min.css"/>
+    <link rel="stylesheet" href="/bower_components/angular-toastr/dist/angular-toastr.min.css">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+
+<header-element></header-element>
+<manage-booking-modal show="showManageBookingModal"></manage-booking-modal>
+<div ui-view></div>
+<footer-element></footer-element>
+
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/moment/moment.js"></script>
+<script src="/bower_components/moment-range/dist/moment-range.js"></script>
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="/bower_components/angular-resource/angular-resource.js"></script>
+<script src="/bower_components/angular-bindonce/bindonce.js"></script>
+<script src="/bower_components/angular-filter/dist/angular-filter.js"></script>
+<script src="/bower_components/angularjs-slider/dist/rzslider.js"></script>
+<script src="/bower_components/jquery-ui/jquery-ui.js"></script>
+<script src="/bower_components/angular-ui-date/dist/date.js"></script>
+<script src="/bower_components/angular-translate/angular-translate.js"></script>
+<script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script src="/bower_components/async/dist/async.js"></script>
+<script src="/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+<script src="/bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js scripts/app.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/route.js"></script>
+<script src="scripts/translations.js"></script>
+<script type="text/javascript" src="https://www.waavo.com/js/iframe5.min.js"></script>
+
+<script src="scripts/services/flights.service.js"></script>
+<script src="scripts/services/helpers.service.js"></script>
+<script src="scripts/services/locations.service.js"></script>
+
+<script src="scripts/controllers/index.controller.js"></script>
+<script src="scripts/controllers/results.controller.js"></script>
+<script src="scripts/controllers/price-calendar.controller.js"></script>
+<script src="scripts/controllers/privacy-policy.controller.js"></script>
+<script src="scripts/controllers/booking.controller.js"></script>
+
+<script src="scripts/directives/header-element.directive.js"></script>
+<script src="scripts/directives/footer-element.directive.js"></script>
+<script src="scripts/directives/search-form.directive.js"></script>
+<script src="scripts/directives/passengers-selecting-modal.directive.js"></script>
+<script src="scripts/directives/manage-booking-modal.directive.js"></script>
+<script src="scripts/directives/prices-matrix.directive.js"></script>
+<script src="scripts/directives/flight-details.directive.js"></script>
+<script src="scripts/directives/flight-row.directive.js"></script>
+<script src="scripts/directives/filter-stops.directive.js"></script>
+<script src="scripts/directives/filter-times.directive.js"></script>
+<script src="scripts/directives/filter-duration.directive.js"></script>
+<script src="scripts/directives/filter-airports.directive.js"></script>
+<script src="scripts/directives/filter-airlines.directive.js"></script>
+<script src="scripts/directives/filter-layover-airports.directive.js"></script>
+<script src="scripts/directives/filter-quality.directive.js"></script>
+<script src="scripts/directives/search-form-2.directive.js"></script>
+<script src="scripts/directives/go-top.directive.js"></script>
+<!-- endbuild -->
+</body>
+</html>

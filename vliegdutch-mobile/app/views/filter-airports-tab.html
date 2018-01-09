@@ -1,0 +1,15 @@
+<!--<a href="#" class="reset-btn">RESET</a>-->
+<div class="filter-body">
+    <div bindonce ng-repeat="(city, airportsList) in airports | groupBy:'city'">
+        <h5 bo-bind="city | uppercase"></h5>
+        <ul class="check-options">
+            <li bindonce ng-repeat="airport in airportsList">
+                <input type="checkbox" class="filled-in" ng-model="airport.checked"/>
+                <label ng-click="toggleItem(airport)">
+                    <span bo-bind="airport.iata"></span>
+                    <span bo-bind="airport.name"></span>
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>

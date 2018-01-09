@@ -1,0 +1,973 @@
+@import "../tool/variables";
+@import "../tool/mixins";
+
+#results-page {
+  background-color: $background-blue;
+
+  .search-block {
+    background-color: $white;
+  }
+
+  .nothing-found {
+    text-align: center;
+    padding: 5rem 0;
+  }
+
+  & > .content-wrapper {
+    background-color: $white;
+    border-top: 1px solid #ededed;
+
+    & > .container > .row:first-child {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+
+    .loading {
+      text-align: center;
+      padding-top: 3rem;
+
+      p {
+        font-size: 2rem;
+      }
+    }
+
+    .close {
+      color: $blue;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    #left-sidebar {
+      h4, h5 {
+        font-weight: bold;
+      }
+
+      .panel-default {
+        background-color: #F9F9F9;
+        border: 1px solid $light-grey-2;
+        border-radius: 0;
+        box-shadow: none;
+
+        .panel-heading {
+          padding: 15px;
+          background-color: transparent;
+          border: none;
+
+          h4 {
+            display: inline;
+            width: 100%;
+            font-size: 16px;
+            font-weight: normal;
+            margin-right: 5px;
+          }
+
+          .reset {
+            font-size: 12px;
+            color: $blue;
+            cursor: pointer;
+            text-transform: lowercase;
+          }
+        }
+      }
+
+      .panel-body {
+        border: none;
+        padding-top: 0;
+        padding-bottom: 20px;
+        font-weight: lighter;
+
+        p {
+          font-size: 13px;
+          margin-bottom: 0;
+        }
+      }
+
+      .panel-group > .panel {
+        margin-top: -6px;
+
+        &:not(:last-child) {
+          border-bottom: none;
+        }
+
+        & + .panel {
+          margin-top: 0;
+        }
+
+        .panel-heading {
+          cursor: pointer;
+        }
+      }
+
+      #search-panel {
+        .panel-heading > h4 {
+          font-size: 16px;
+        }
+      }
+
+      #get-alert-block {
+        margin-bottom: 20px;
+
+        .show-alert-form-btn {
+          font-size: 14px;
+          font-weight: lighter;
+          border-radius: 5px;
+          padding: 16px;
+          i {
+            float: left
+          }
+        }
+
+        .panel {
+          @include shadow(0px 1px 5px 2px rgba(0, 0, 0, 0.16));
+          border: none;
+          padding: 10px;
+
+          a.close-block {
+            float: right;
+          }
+
+          p {
+            width: 90%;
+            text-align: left;
+            font-size: 13px;
+
+            &.success {
+              color: #99CC00;
+            }
+          }
+
+          .btn {
+            font-weight: lighter;
+          }
+        }
+      }
+
+      #filters-panel {
+        /*@include shadow(0px 1px 5px 2px rgba(0, 0, 0, 0.16));*/
+        border: none;
+      }
+
+      #filters-title {
+        background-color: #FFF;
+        font-weight: normal;
+
+        h4 {
+          font-size: 20px;
+          font-weight: normal;
+          color: $black-2;
+        }
+
+        .results-count {
+          color: #9a9a9a;
+          margin-bottom: 10px;
+          font-size: 13px;
+        }
+
+        a {
+          color: $blue;
+          font-size: 13px;
+          border-bottom: dashed 1px #acc9dd;
+          padding-bottom: 5px;
+          i {
+            margin-left: 15px;
+          }
+        }
+      }
+
+      #filter-times {
+        .tab-pane {
+          margin-top: 0;
+
+          .label {
+            display: inline-block;
+            color: #8E8E8E;
+            font-size: 13px;
+            margin: 25px 0 10px 0;
+            padding: 0;
+            font-weight: lighter;
+
+            span {
+              color: #000;
+            }
+          }
+        }
+      }
+
+      .time-slider {
+        .slider-wrapper {
+          margin-left: 4%;
+          width: 90%;
+        }
+      }
+
+      .show-more {
+        a {
+          color: $blue;
+          font-size: 14px;
+          cursor: pointer;
+
+          i {
+            margin-left: 5px;
+          }
+        }
+      }
+
+      ul.filter-options-list {
+        margin-bottom: 5px;
+        li {
+          padding: 5px 5px 2px 5px;
+          font-size: 15px;
+
+          &.title {
+            font-weight: normal;
+            font-size: 14px;
+          }
+
+          &:not(.title) {
+            color: $black-2;
+          }
+
+          label {
+            font-size: 14px;
+            font-weight: lighter;
+            //max-width: 70%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            vertical-align: middle;
+          }
+
+          .only, .price {
+            float: right;
+          }
+
+          .only {
+            color: $blue;
+            display: none;
+            cursor: pointer;
+          }
+
+          .price {
+            margin-left: 10px;
+            color: $grey;
+            font-size: 14px;
+          }
+
+          &:hover:not(.title):not(.show-more) {
+            background-color: #E7E7E7;
+            .only {
+              display: block;
+            }
+          }
+        }
+      }
+
+      .panel.with-tabs {
+        .tab-pane {
+          margin-top: 15px;
+        }
+
+        .nav-tabs {
+          width: 100%;
+          border-right: none;
+          border-left: none;
+          border-bottom: solid 1px $light-grey-2;
+          border-top: solid 1px $light-grey-2;
+
+          li {
+            width: 50%;
+            text-align: center;
+            font-size: 12px;
+            margin: 0;
+
+            .btn {
+              border: none;
+              margin: 0;
+              border-radius: 0;
+              padding: 7px;
+              color: $black-2;
+            }
+
+            &:not(.active) {
+              .btn {
+                @include gradient-bg(#FFF, #FAFAFA)
+              }
+            }
+
+            &.active {
+              .btn {
+                background-color: rgba(230, 230, 230, 0.7);
+                box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.05);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #results-list {
+      .panel--best-price {
+        border: 1px solid #FFBA00;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+      .panel-heading--best-price {
+        width: 100%;
+        min-height: 40px;
+        padding: 10px 16px;
+        background-color: #FFBA00;
+        color: #fff;
+        font-size: 16px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+      }
+
+      select#sort-by {
+        width: 100px;
+        margin-left: 10px;
+      }
+
+      .select2-container {
+        margin-left: 10px;
+      }
+
+      #lowest-prices-block {
+        .action-link {
+          color: $blue;
+          cursor: pointer;
+          position: absolute;
+          top: -15px;
+          right: 3px;
+          background: #ffffff;
+
+          i {
+            margin-left: 5px;
+            font-size: 30px;
+          }
+        }
+
+        .panel-heading {
+
+          h4 {
+            margin: 3px 0;
+          }
+          background-color: $white;
+
+          .nav-tabs {
+            border: none;
+            color: $black-2;
+
+            li {
+              &:first-child {
+                font-size: 16px;
+                font-weight: bolder;
+                padding: 10px;
+              }
+            }
+
+            & > li > a {
+              font-size: 14px;
+              color: $black-2;
+              border: none;
+              border-radius: 5px;
+              text-transform: uppercase;
+              padding: 12px 20px;
+              margin: 0;
+
+              &:hover {
+                border: none;
+                background-color: #f0f0f0;
+              }
+            }
+
+            & > li.active > a {
+              background: #f0f0f0;
+              @include shadow(2px 1px 3px #D8D8D8);
+            }
+          }
+
+          .depart-from {
+            display: inline-block;
+
+            .btn {
+              margin-left: 10px;
+              font-weight: lighter;
+              font-size: 12px;
+              border-color: $white;
+              border-radius: 5px;
+
+              &.active {
+                box-shadow: none;
+                border-color: #ADADAD;
+              }
+            }
+          }
+        }
+
+        .panel-body {
+          padding: 0;
+        }
+
+        .matrix-table {
+          margin-bottom: 0;
+          border-bottom: 0;
+          td, th {
+            padding: 9px 4px 6px 4px;
+            border-right: 1px solid $light-grey-2;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: bolder;
+
+            &.t-blank {
+              border: none !important;
+            }
+
+            &.t-header {
+              text-align: left;
+              font-size: 17px;
+              font-weight: normal;
+              &--oneway {
+                text-align: center;
+                border: none;
+                border-bottom: 1px solid #ddd;
+              }
+            }
+
+            &.date {
+              font-size: 14px;
+              color: $black-2;
+              background-color: $light-grey-2;
+              border: 1px solid #ddd;
+            }
+
+            &.value {
+              position: relative;
+              color: $black-2;
+              font-size: 16px;
+              background: #fcfcfc;
+
+              &.search {
+                cursor: pointer;
+                font-weight: bolder;
+                color: $blue;
+                background: #fcfcfc;
+                font-size: 17px;
+              }
+
+              &.current {
+                color: $orange-3 !important;
+                background-color: #FDDBD0;
+                cursor: default;
+                font-weight: bold;
+                font-size: 17px;
+              }
+
+              &.important {
+                color: #99cc00 !important;
+                background-color: rgba(153, 204, 0, 0.1);
+              }
+
+              & > i {
+                color: $black-2;
+              }
+            }
+
+            &.value:not(.current):hover {
+              background-color: #ebebeb;
+            }
+          }
+        }
+      }
+      .flight-options-area {
+        padding: 10px 15px 10px 15px;
+        .flight-option-seats-select {
+          padding: 20px 30px;
+          a {
+            img {
+              width: 15px;
+              margin-right: 5px;
+              margin-bottom: 5px;
+            }
+            span {
+              font-size: 16px;
+              font-weight: normal;
+              color: #444;
+            }
+            .caret {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+
+      ul.flight-options {
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+
+        li {
+          float: left;
+          color: $black-2;
+          background-color: #B2D7F1;
+          width: 195px;
+          cursor: pointer;
+          border-radius: 3px;
+          border: solid $light-grey-2 1px;
+          padding: 10px 15px;
+          font-size: 16px;
+          margin-right: 15px;
+
+          small {
+            float: left;
+            width: 100%;
+          }
+
+          &.active {
+            background-color: $blue;
+            color: $white;
+            position: relative;
+            z-index: 20;
+            padding: 10px 15px;
+            font-size: 16px;
+
+            .flight-option-element-last-child {
+            }
+          }
+
+          &:hover:not(.active) {
+            background-color: #279CEE;
+          }
+
+          .flight-option-element-last-child {
+            font-size: 14px;
+            font-weight: lighter;
+          }
+        }
+      }
+
+      .class-select {
+        .btn {
+          float: right;
+          text-align: left;
+          height: 56px;
+          border-radius: 2px;
+          font-weight: bold;
+          width: 170px;
+
+          .icon {
+            margin-right: 10px;
+            margin-top: -5px;
+            height: 20px;
+          }
+
+          .caret {
+            float: right;
+            margin-top: 7px;
+          }
+        }
+
+        .dropdown-menu {
+          right: 0;
+          top: 55px;
+
+          a {
+            padding: 10px 20px;
+          }
+        }
+      }
+
+      .result_item_first_child {
+        .offer-element {
+          .general-info {
+            .right-block {
+              .best-deal {
+                visibility: visible !important;
+              }
+            }
+          }
+        }
+      }
+      .results-item {
+        /* @include shadow(0px 1px 5px 0px rgba(0, 0, 0, 0.16));*/
+        margin-top: 20px;
+
+        .offer-element {
+          border: 1px solid $light-grey-2;
+          &:hover {
+            @include shadow(0px 1px 5px 2px rgba(0, 0, 0, 0.16));
+          }
+
+          .flight-plan {
+            border-right: solid $light-grey-2 1px;
+            padding-right: 0;
+            height: 100%;
+            min-height: 275px;
+            padding-bottom: 25px;
+            .second_flight_row {
+              .airport {
+                border-bottom: none !important;
+              }
+            }
+          }
+
+          .general-info {
+            .header {
+              background: #f1f1f1;
+              font-size: 13px;
+              font-weight: normal;
+              padding: 5px;
+              color: $black-2;
+              border-bottom: 1px solid $light-grey-2;
+
+              .text-light {
+                font-size: 12px;
+                margin-left: 10px;
+                color: $text-light;
+              }
+
+              i {
+                font-size: 12px;
+                padding: 0 7px;
+
+                &.depart {
+                  @include rotate(45);
+                }
+                &.return {
+                  @include rotate(315);
+                }
+              }
+            }
+
+            table {
+              margin: 0;
+              width: 100%;
+              color: $black-2;
+              border-bottom: 1px solid $medium-grey;
+
+              td {
+                padding: 5px 10px;
+
+                .label {
+                  float: right;
+                  padding: 4px;
+                }
+
+                .airport-code, .time {
+                  font-size: 18px;
+                  font-weight: bold;
+                }
+
+                img.carrier-logo {
+                  max-height: 100px;
+                  max-width: 110px;
+                }
+
+                .two-logos {
+                  width: 50px;
+                  height: 50px;
+                  margin: 0 25px auto;
+                }
+
+                .three-logos {
+                  width: 50px !important;
+                  height: 33px !important;
+                  margin: 0 12px auto !important;
+                }
+
+                &.duration-col {
+                  span, small {
+                    display: block;
+                    width: 100%;
+                    text-align: center;
+                  }
+
+                  .direct-flight {
+                    color: #9C0;
+                    font-weight: bold;
+                    font-size: 12px;
+
+                    span {
+                      border: solid 1px;
+                      display: inline-block;
+                      width: 60px;
+                      margin-right: 5px;
+                      margin-bottom: 4px;
+                    }
+                  }
+
+                  small {
+                    font-size: 11px;
+                    color: $grey;
+                  }
+                }
+              }
+
+              .text-light {
+                color: $text-light;
+              }
+
+              td:first-child {
+                width: 15%;
+              }
+
+              td:nth-child(2), td:last-child {
+                width: 25%;
+              }
+
+              td:nth-child(3) {
+                width: 35%;
+              }
+
+              td + td {
+                border-left: solid $medium-grey 1px;
+              }
+            }
+
+            .summary {
+              position: absolute;
+              bottom: 0;
+              margin-bottom: 0;
+              border-top: solid $light-grey-2 1px;
+              font-size: 12px;
+              line-height: 30px;
+              width: 98%;
+
+              a {
+                float: left;
+                margin-left: 10px;
+                color: $blue;
+                text-transform: uppercase;
+                font-weight: normal;
+                font-size: 12px;
+
+                i {
+                  display: block;
+                  float: right;
+                  margin-top: 5px;
+                }
+              }
+
+              .additional-fees {
+                float: right;
+                margin-right: 10px;
+                font-weight: lighter;
+                color: #98a6ad;
+              }
+            }
+          }
+
+          .right-block {
+            padding: 0 15px 0 0;
+
+            .best-deal {
+              visibility: collapse;
+              display: inline-block;
+              width: 100%;
+              background-color: #99CC00;
+              color: $white;
+              text-align: center;
+              line-height: 29px;
+            }
+            .price-wrapper {
+              margin: 10px 20px 20px 20px;
+              height: 200px;
+
+              .price-per-person {
+                color: $black-2;
+              }
+              .price-value {
+                font-size: 36px;
+                display: block;
+                color: #E40021;
+
+                small {
+                  font-size: 40%;
+                }
+
+                sup {
+                  font-size: 60%;
+                }
+              }
+
+              .per-person {
+                font-size: 12px;
+                margin-top: -5px;
+                display: block;
+                color: $grey;
+              }
+
+              .seats-left, .luggage-included {
+                display: block;
+                padding-top: 10px;
+                text-align: right;
+                font-size: 14px;
+
+                i {
+                  font-size: 12px;
+                  margin-right: 5px;
+                }
+              }
+
+              .seats-left {
+                font-size: 13px;
+                color: #F00;
+              }
+
+              .luggage-included {
+                color: #9FCC00;
+              }
+
+              .book-now {
+                @include shadow(1px 3px 6px #D8D8D8);
+                position: absolute;
+                left: 9%;
+                width: 75%;
+                bottom: 0;
+                font-weight: lighter;
+                line-height: 30px;
+                border-radius: 4px;
+                font-size: 15px;
+                background-color: #ff8400;
+                border: none;
+                padding: 12px 0;
+
+                &:hover {
+                  background-color: darken($orange-2, 10);
+                }
+              }
+
+            }
+          }
+
+          .flight-details {
+            font-weight: lighter;
+            padding-bottom: 15px;
+
+            & > .row {
+              margin: 0;
+            }
+
+            .direction {
+              margin-bottom: 16px;
+              background-color: #f1f1f1;
+              padding: 7px 10px 6px;
+              border-radius: 2px;
+              font-size: 16px;
+              color: $black-2;
+              font-weight: normal;
+              border-top: 1px solid $light-grey-2;
+              border-bottom: 1px solid $light-grey-2;
+
+              & > span:not(:last-child) {
+                margin-right: 20px;
+                border-right: 1px solid $light-grey-2;
+                padding-right: 20px;
+              }
+
+              i {
+                margin-right: 10px;
+                color: $blue;
+              }
+            }
+
+            table.info {
+              border-top: none;
+              margin-bottom: 0;
+              width: 100%;
+
+              th {
+                font-weight: lighter;
+                color: $grey;
+                font-size: 13px;
+                padding-bottom: 14px;
+              }
+
+              td {
+                vertical-align: top;
+                width: 25%;
+                border: none;
+              }
+
+              p {
+                margin: 0;
+                color: $black-2;
+                font-weight: normal;
+              }
+
+              .large {
+                font-size: 17px;
+                font-weight: bold;
+              }
+
+              .medium {
+                font-size: 13px;
+              }
+
+              img.carrier-logo {
+                float: left;
+                margin-right: 10px;
+                max-width: 50px;
+                max-height: 35px;
+              }
+
+              .align {
+                width: 60%;
+              }
+            }
+
+            .info-line {
+              display: block;
+              line-height: 20px;
+              font-size: 11px;
+              margin: 10px 0 20px 0;
+            }
+
+            .flight-more-details {
+              color: $grey;
+              font-size: 13px;
+              margin: 20px 0 15px 0;
+              font-weight: lighter;
+            }
+
+            .stopover-line {
+              margin: 10px 0 17px;
+              padding: 10px 0;
+              border-top: 1px dashed $medium-grey-2;
+              border-bottom: 1px dashed $medium-grey-2;
+              font-size: 13px;
+
+              p {
+                margin-bottom: 0;
+                color: #de7e28;
+                font-weight: normal;
+              }
+
+              i {
+                margin-left: 3px;
+                margin-right: 5px;
+              }
+            }
+          }
+        }
+      }
+
+      .show-more-btn {
+        @include shadow(0px 1px 5px 2px rgba(0, 0, 0, 0.16));
+        border: none;
+        color: $white;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: normal;
+        background-color: $blue;
+        padding: 12px;
+        border-radius: 4px;
+      }
+    }
+
+  }
+
+}
+

@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>VliegDutch</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/materialize/bin/materialize.css" />
+    <link rel="stylesheet" href="/bower_components/angularjs-slider/dist/rzslider.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- build:css styles/booking-page.css -->
+    <link rel="stylesheet" href="styles/booking-page.css">
+    <!-- endbuild -->
+
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+
+      <nav class="main-nav">
+        <div class="nav-wrapper">
+          <a href="index.html" class="brand-logo center">
+            <img src="images/logo/logo.png" alt="VliegDutch" />
+          </a>
+          <a class="modal-trigger nav-btn" href="#nav-modal">
+            <i class="material-icons">menu</i>
+          </a>
+        </div>
+      </nav>
+
+      <div id="passenger-data-page" class="booking-page content">
+        <div class="card progress-card">
+          <div class="row">
+            <a class="col s3 passed" href="#">
+              <i>1</i>Search
+            </a>
+            <a class="col s5 active" href="#">
+              <i>2</i>Passenger data
+            </a>
+            <a class="col s4" href="#">
+              <i>3</i>Payment
+            </a>
+          </div>
+        </div>
+
+        <div class="card info-card">
+          <h4>
+            <i class="material-icons small alert-icon">info</i>
+            Important information
+          </h4>
+          <p>Itinerary consist of unconnected flights, therefore airline and travel agent are not responsible for further trip itinirary and do not compensate damages caused by loss of trip connection.
+        </div>
+
+        <div class="card info-card">
+          <h5>INCLUDED IN PRICE</h5>
+          <ul class="list-unstyled noselect">
+            <li>
+              <i class="material-icons checkmark positive">done</i>
+              <span>Flight (Vilnius - Milan - Vilnius)</span>
+            </li>
+            <li>
+              <i class="material-icons checkmark positive">done</i>
+              <span>Hand luggage (1 unit)</span>
+            </li>
+            <li>
+              <i class="material-icons checkmark positive">done</i>
+              <span>FREE Cancellation Insurance</span>
+              <a href="#cancelation-policy" class="modal-trigger" tabindex="-1">
+                (cancelation policy)
+              </a>
+            </li>
+            <li>
+              <i class="material-icons checkmark positive">done</i>
+              <span>FREE Online Check-in</span>
+              <a class="tooltipped info" data-position="top" data-delay="50" data-tooltip="We will do the check-in for you and send your boarding pass to your email address">
+                <i class="material-icons">info</i>
+              </a>
+            </li>
+            <li>
+              <i class="material-icons checkmark positive">done</i>
+              <span>FREE SMS booking confirmation</span>
+            </li>
+            <li>
+              <i class="material-icons checkmark positive">done</i>
+              <span>FREE SMS alert by flight reschedule</span>
+            </li>
+            <li>
+              <i class="material-icons checkmark positive">done</i>
+              <span>Compensation for delays</span>
+              <a class="tooltipped info" data-position="top" data-delay="50" data-tooltip="<<<ADD HELP MESSAGE TO HERE>>>">
+                <i class="material-icons">info</i>
+              </a>
+            </li>
+          </ul>
+
+          <h5>NOT INCLUDED IN PRICE</h5>
+          <ul class="list-unstyled noselect">
+            <li>
+              <i class="material-icons checkmark negative">close</i>
+              <span>Checked baggage (You can order it bellow)</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card form-card">
+          <div class="header">Adults</div>
+          <div class="card-content">
+            <form class="col s12">
+              <h5>Passenger 1</h5>
+
+              <p>
+              <span class="important">Important!</span>
+              Airline travel alone allow only 16 years and over.
+              </p>
+
+              <div class="row">
+                <div class="input-field col s6">
+                  <select>
+                    <option value="" disabled selected>Title</option>
+                    <option value="mr">Mr.</option>
+                    <option value="mrs">Mrs.</option>
+                    <option value="ms">Ms.</option>
+                  </select>
+                </div>
+
+                <div class="input-field col s12">
+                  <input id="first-name-1" type="text" class="validate">
+                  <label for="first-name-1">First Name</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="last-name-1" type="text" class="validate">
+                  <label for="last-name-1">Last Name</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="email-1" type="text" class="validate">
+                  <label for="email-1">Email</label>
+                </div>
+                <div class="input-field col s12 phone-field">
+                  <div class="cc-select">
+                    <input type="hidden" id="cc" value="31">
+                    <a class="modal-trigger" href="#country-code-modal" >
+                      <img src="/images/flags/Netherlands.png"/>
+                      <span class="caret">▼</span>
+                    </a>
+                  </div>
+                  <input id="mobile" type="text" class="validate">
+                  <label for="mobile">Mobile</label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card form-card">
+          <div class="header">Children</div>
+          <div class="card-content">
+            <form class="col s12">
+              <h5>Passenger 2</h5>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="first-name-2" type="text" class="validate">
+                  <label for="first-name-2">First Name</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="last-name-2" type="text" class="validate">
+                  <label for="last-name-2">Last Name</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="birth-date-2" type="text" class="validate">
+                  <label for="birth-date-2">Bith Date</label>
+                </div>
+              </div>
+
+              <h5>Passenger 3</h5>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="first-name-3" type="text" class="validate">
+                  <label for="first-name-3">First Name</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="last-name-3" type="text" class="validate">
+                  <label for="last-name-3">Last Name</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="birth-date-3" type="text" class="validate">
+                  <label for="birth-date-3">Bith Date</label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card form-card">
+          <div class="header">
+            <input type="checkbox" class="filled-in" id="invoice-required" />
+            <label for="invoice-required">Invoice required</label>
+          </div>
+          <div class="card-content">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="company-name" type="text" class="validate">
+                  <label for="company-name">Company Name</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="company-vat" type="text" class="validate">
+                  <label for="company-vat">Company VAT Code</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="company-address" type="text" class="validate">
+                  <label for="company-address">Company Address</label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div id="cabin-bag" class="card baggage-card">
+          <div class="card-content">
+            <div class="row">
+              <div class="col s7">
+                <h5>Larger cabin bag</h5>
+                <p>up to 10kg 56x45x25cm</p>
+              </div>
+              <div class="col s5">
+                <a class="waves-effect waves-light btn blue modal-trigger" href="#cabin-bag-modal">Select</a>
+              </div>
+            </div>
+            <div class="results-list"></div>
+          </div>
+        </div>
+
+        <div id="checked-bag" class="card baggage-card">
+          <div class="card-content">
+            <div class="row">
+              <div class="col s7">
+                <h5>Checked Bag</h5>
+                <p>up to 32kg 84x65x35cm</p>
+              </div>
+              <div class="col s5">
+                <a class="waves-effect waves-light btn blue modal-trigger" href="#checked-bag-modal">Select</a>
+              </div>
+            </div>
+            <div class="results-list"></div>
+          </div>
+        </div>
+
+        <div class="card summary-card">
+          <div class="header">Summary</div>
+          <div class="card-content">
+            <div class="row">
+              <div class="col s8 title">
+                <span>Flight price</span>
+                <span>3 x € 220,88</span>
+              </div>
+              <div class="col s4 price">€ 489,00</div>
+            </div>
+            <div class="row">
+              <div class="col s8 title">
+                <span>Hand luggage</span>
+                <span>Milan - Vilnius</span>
+              </div>
+              <div class="col s4 price">€ 0,00</div>
+            </div>
+            <div class="row">
+              <div class="col s8 title">
+                <span>Baggage</span>
+                <span>Vilnius - Milan 0pc</span>
+              </div>
+              <div class="col s4 price">€ 48,00</div>
+            </div>
+            <div class="row">
+              <div class="col s8 title">
+                <span>Transaction fee</span>
+              </div>
+              <div class="col s4 price">€ 9,99</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card tac-card">
+          <div class="card-content">
+            <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+            <label for="filled-in-box">
+              I agree with the <a href="#">terms and conditions</a> and confirm I have entered my data correctly.
+            </label>
+          </div>
+        </div>
+
+        <a href="#" class="btn book-btn">Book flight for <span>€ 354.22</span></a>
+
+        <div id="cancelation-policy" class="modal top-sheet">
+          <div class="modal-header card">
+            <a href="#" class="modal-aciton modal-close">
+              <i class="material-icons">close</i>
+            </a>
+            <h4>CANCELATION POLICY</h4>
+          </div>
+
+          <div class="card">
+            <p>Ab nostrum nemo earum quibusdam. Debitis possimus error atque velit. Ullam quaerat nobis magni magni nulla qui dolores. Sunt sit quis aperiam consequatur. Possimus voluptates odit reiciendis debitis sunt. Magni eos explicabo blanditiis dolores fugiat deserunt enim.
+Iure similique quisquam voluptates mollitia accusamus. Ratione dolor eum nemo consequuntur eum qui distinctio. Sed labore at esse consequuntur consequatur facere ipsam numquam. Alias ut optio ullam tempora asperiores facilis blanditiis placeat. Quos repellat aut est sint qui sed.
+Eos sint quidem alias incidunt quo non nihil. Rerum natus expedita minima aut. At sit voluptatem distinctio vel odit reiciendis. Aut esse quasi sed laborum harum excepturi odit atque. Officia explicabo tempora id illo tempore fuga ut. Consequatur commodi assumenda est modi.
+Tempora eius est sequi. Ut rerum dolor molestiae iure ut quia. Nam cum porro error est beatae. Perspiciatis praesentium voluptatem vel esse.
+Repudiandae quo tenetur exercitationem nostrum reprehenderit. Quaerat incidunt ea necessitatibus eligendi voluptas omnis. Tempora modi placeat aut vero provident quidem odit dolorem. Porro maiores consequatur ut est unde possimus soluta sed. Explicabo aliquid dolore aut enim sunt.</p>
+          </div>
+        </div>
+
+        <div id="cabin-bag-modal" class="modal top-sheet baggage-select-modal">
+          <div class="modal-header card">
+            <a href="#" class="modal-aciton modal-close">
+              <i class="material-icons">close</i>
+            </a>
+            <h4>BAGGAGE SELECTION</h4>
+          </div>
+
+          <div class="card passenger-baggage">
+            <h5>Passenger 1</h5>
+            <div data-type="departure" class="option-block">
+              <h4>
+                <i class="material-icons airplane rotate90">airplanemode_active</i>
+                <span>Vilnius - Milan</span>
+              </h4>
+              <div class="input-field col s12">
+                <select>
+                  <option value="">Small cabin bag - free of charge</option>
+                  <option value="10">Larger cabin bag 10kg (56x54x25cm) - €66.00</option>
+                </select>
+              </div>
+            </div>
+            <div data-type="return" class="option-block">
+              <h4>
+                <i class="material-icons airplane rotate270">airplanemode_active</i>
+                <span>Milan - Vilnius</span>
+              </h4>
+              <div class="input-field col s12">
+                <select>
+                  <option value="">Small cabin bag - free of charge</option>
+                  <option value="10">Larger cabin bag 10kg (56x54x25cm) - €66.00</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="card passenger-baggage">
+            <h5>Passenger 2</h5>
+            <div data-type="departure" class="option-block">
+              <h4>
+                <i class="material-icons airplane rotate90">airplanemode_active</i>
+                <span>Vilnius - Milan</span>
+              </h4>
+              <div class="input-field col s12">
+                <select>
+                  <option value="">Small cabin bag - free of charge</option>
+                  <option value="10">Larger cabin bag 10kg (56x54x25cm) - €66.00</option>
+                </select>
+              </div>
+            </div>
+            <div data-type="return" class="option-block">
+              <h4>
+                <i class="material-icons airplane rotate270">airplanemode_active</i>
+                <span>Milan - Vilnius</span>
+              </h4>
+              <div class="input-field col s12">
+                <select>
+                  <option value="">Small cabin bag - free of charge</option>
+                  <option value="10">Larger cabin bag 10kg (56x54x25cm) - €66.00</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <a href="#" class="btn btn-block blue continue-btn modal-close">Continue</a>
+        </div>
+
+        <div id="checked-bag-modal" class="modal top-sheet baggage-select-modal">
+          <div class="modal-header card">
+            <a href="#" class="modal-aciton modal-close">
+              <i class="material-icons">close</i>
+            </a>
+            <h4>BAGGAGE SELECTION</h4>
+          </div>
+
+          <div class="card passenger-baggage">
+            <h5>Passenger 1</h5>
+            <div data-type="departure" class="option-block">
+              <h4>
+                <i class="material-icons airplane rotate90">airplanemode_active</i>
+                <span>Vilnius - Milan</span>
+              </h4>
+              <div class="input-field col s12">
+                <select>
+                  <option value="">Small cabin bag - free of charge</option>
+                  <option value="10">Larger cabin bag 10kg (56x54x25cm) - €66.00</option>
+                </select>
+              </div>
+            </div>
+            <div data-type="return" class="option-block">
+              <h4>
+                <i class="material-icons airplane rotate270">airplanemode_active</i>
+                <span>Milan - Vilnius</span>
+              </h4>
+              <div class="input-field col s12">
+                <select>
+                  <option value="">Small cabin bag - free of charge</option>
+                  <option value="10">Larger cabin bag 10kg (56x54x25cm) - €66.00</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="card passenger-baggage">
+            <h5>Passenger 2</h5>
+            <div data-type="departure" class="option-block">
+              <h4>
+                <i class="material-icons airplane rotate90">airplanemode_active</i>
+                <span>Vilnius - Milan</span>
+              </h4>
+              <div class="input-field col s12">
+                <select>
+                  <option value="">Small cabin bag - free of charge</option>
+                  <option value="10">Larger cabin bag 10kg (56x54x25cm) - €66.00</option>
+                </select>
+              </div>
+            </div>
+            <div data-type="return" class="option-block">
+              <h4>
+                <i class="material-icons airplane rotate270">airplanemode_active</i>
+                <span>Milan - Vilnius</span>
+              </h4>
+              <div class="input-field col s12">
+                <select>
+                  <option value="">Small cabin bag - free of charge</option>
+                  <option value="10">Larger cabin bag 10kg (56x54x25cm) - €66.00</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <a href="#" class="btn btn-block blue continue-btn modal-close">Continue</a>
+        </div>
+
+        <div id="country-code-modal" class="modal top-sheet">
+          <div class="modal-header card">
+            <a href="#" class="modal-aciton modal-close">
+              <i class="material-icons">close</i>
+            </a>
+            <h4>COUNTRY CODE</h4>
+          </div>
+
+          <div class="card">
+            <ul>
+              <li data-cc="31"><img src="/images/flags/Netherlands.png" />Netherlands (+31)</li>
+              <li data-cc="32"><img src="/images/flags/Belgium.png" />Belgium (+32)</li>
+              <li data-cc="370"><img src="/images/flags/Lithuania.png" />Lithuania (+370)</li>
+              <li data-cc="371"><img src="/images/flags/Latvia.png" />Latvia (+371)</li>
+              <li data-cc="372"><img src="/images/flags/Estonia.png" />Estonia (+372)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    <div id="nav-modal" class="modal top-sheet">
+      <div class="modal-header card">
+        <a href="#" class="modal-aciton modal-close">
+          <i class="material-icons">close</i>
+        </a>
+        <h4>MENU</h4>
+      </div>
+      <div class="modal-content card">
+        <a href="#" class="btn btn-block light-blue darken-1 waves-effect waves-light search-flights-btn">
+          <i class="material-icons">airplanemode_active</i>
+          SEARCH FLIGHTS
+        </a>
+        <a href="#" class="btn btn-block light-blue darken-1 waves-effect waves-light">
+          E-TICKET
+        </a>
+        <div class="row bottom-elements">
+          <div class="col s5 language-selectors">
+            <a class="btn btn-round waves-effect" href="#">NL</a>
+            <a class="btn btn-round active" href="#">EN</a>
+          </div>
+          <div class="col s7 contact-info">
+            <h5>
+              <i class="material-icons">smartphone</i>
+              0900 2365254
+            </h5>
+            <small>Mon - Fri 08:00 - 18:00</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/materialize/bin/materialize.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/moment-range/dist/moment-range.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-bindonce/bindonce.js"></script>
+    <script src="/bower_components/angular-filter/dist/angular-filter.js"></script>
+    <script src="/bower_components/angularjs-slider/dist/rzslider.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/tooltip.js"></script>
+    <!-- endbuild -->
+    <!-- build:js scripts/passenger_data.js -->
+    <script src="scripts/passenger_data.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

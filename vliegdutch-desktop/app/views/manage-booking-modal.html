@@ -1,0 +1,52 @@
+<div class="modal" ng-class="{visible: show}" id="order-management-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" ng-click="$event.stopPropagation()">
+            <div class="modal-header">
+                <button class="close" ng-click="show = false"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="bookingModal">{{ 'MANAGE_BOOKING.HEADER' | translate }}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{{ 'MANAGE_BOOKING.TEXT' | translate }}</p>
+                <form>
+                    <div class="form-group">
+                        <label for="confirmation-number">
+                            {{ 'MANAGE_BOOKING.CONFIRM' | translate }}
+                            <i class="fa fa-question-circle help" data-toggle="tooltip" data-placement="right"
+                               title="The confirmation number you can find in your order confirmation email."></i>
+                        </label>
+                        <input type="email" class="form-control" id="confirmation-number" placeholder="F2XXXXXX">
+                        <a class="forgot-number" ng-click="switchToForgotNumber()">{{ 'MANAGE_BOOKING.FORGOT' |
+                            translate }}</a>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" ng-class="{visible: showForgotNumber}" id="forgot-booking-number-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" ng-click="$event.stopPropagation()">
+            <div class="modal-header">
+                <button class="close" ng-click="showForgotNumber = false"><span>&times;</span></button>
+                <h3 class="modal-title" id="booking-modal">{{ 'MANAGE_BOOKING.HEADER' | translate }}</h3>
+            </div>
+            <div class="modal-body">
+                {{'MANAGE_BOOKING.FORGOT_MODAL.TEXT_HEADER'|translate }}
+                <ul>
+                    <li>{{'MANAGE_BOOKING.FORGOT_MODAL.TEXT_BODY_1'|translate }}</li>
+                    <li>{{'MANAGE_BOOKING.FORGOT_MODAL.TEXT_BODY_2'|translate }}</li>
+                </ul>
+                {{'MANAGE_BOOKING.FORGOT_MODAL.TEXT_FOOTER'|translate }}
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="switchToMainModal()">
+                    {{'MANAGE_BOOKING.FORGOT_MODAL.BACK'|translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

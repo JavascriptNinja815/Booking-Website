@@ -1,0 +1,68 @@
+<!doctype html>
+<html ng-app="vliegdutch">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>VliegDutch</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/materialize/bin/materialize.css"/>
+    <link rel="stylesheet" href="/bower_components/angularjs-slider/dist/rzslider.css"/>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- build:css styles/app.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/index-page.css">
+    <link rel="stylesheet" href="styles/results-page.css">
+    <link rel="stylesheet" href="styles/loading-page.css">
+    <!-- endbuild -->
+</head>
+<body>
+<div ui-view></div>
+
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/moment/moment.js"></script>
+<script src="/bower_components/moment-range/dist/moment-range.js"></script>
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="/bower_components/angular-resource/angular-resource.js"></script>
+<script src="/bower_components/angular-bindonce/bindonce.js"></script>
+<script src="/bower_components/angular-filter/dist/angular-filter.js"></script>
+<script src="/bower_components/angularjs-slider/dist/rzslider.js"></script>
+<script src="/bower_components/angular-translate/angular-translate.js"></script>
+<script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js scripts/app.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/route.js"></script>
+<script src="scripts/translations.js"></script>
+<script src="scripts/services/flights.service.js"></script>
+<script src="scripts/services/locations.service.js"></script>
+
+<script src="scripts/controllers/search.controller.js"></script>
+<script src="scripts/controllers/results.controller.js"></script>
+
+<script src="scripts/directives/focus-on.directive.js"></script>
+<script src="scripts/directives/flight-row.directive.js"></script>
+<script src="scripts/directives/filters.directive.js"></script>
+<script src="scripts/directives/filter-time-tab.directive.js"></script>
+<script src="scripts/directives/filter-stops-tab.directive.js"></script>
+<script src="scripts/directives/filter-airports-tab.directive.js"></script>
+<script src="scripts/directives/filter-airlines-tab.directive.js"></script>
+<script src="scripts/directives/filter-quality-tab.directive.js"></script>
+<!-- endbuild -->
+</body>
+</html>

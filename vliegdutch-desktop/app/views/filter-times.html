@@ -1,0 +1,94 @@
+<div id="filter-times" class="panel border_bottom_none panel-default filters-group with-tabs">
+    <div class="panel-heading">
+        <h4 class="panel-title" ng-click="collapsed = !collapsed">
+            {{ 'RESULTS.TIMES' | translate }}
+            <i class="material-icons pull-right clickable">{{headerIcon}}</i>
+        </h4>
+        <a class='reset' ng-click="reset()">({{ 'RESULTS.RESET' | translate }})</a>
+    </div>
+
+    <div class="panel-collapse collapse" ng-class="{in: !collapsed}">
+        <ul class="nav nav-tabs">
+            <li role="presentation" ng-class="{active: timeTab == 'take-off'}">
+                <a class="btn" ng-click="showTab('take-off')">{{ 'RESULTS.TAKE_OFF' | translate }}</a>
+            </li>
+            <li role="presentation" ng-class="{active: timeTab == 'landing'}">
+                <a class="btn" ng-click="showTab('landing')">{{ 'RESULTS.LANDING' | translate }}</a>
+            </li>
+        </ul>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div class="tab-pane" ng-class="{active: timeTab == 'take-off'}">
+                    <div class='label'>{{ 'RESULTS.TAKE_OFF' | translate }}:
+                        <span>{{takeOffCityForward}}</span>
+                    </div>
+
+                    <div>
+                        <p>
+                            <strong>{{formattedTimeFrom('takeOffForward')}}</strong>
+                            to
+                            <strong>{{formattedTimeTo('takeOffForward')}}</strong>
+                        </p>
+
+                        <rzslider
+                                rz-slider-model="takeOffForwardFilter.min"
+                                rz-slider-high="takeOffForwardFilter.max"
+                                rz-slider-options="takeOffForwardFilter.options"></rzslider>
+                    </div>
+
+                    <div ng-show="takeOffCityComeback">
+                        <div class='label'>{{ 'RESULTS.TAKE_OFF' | translate }}:
+                            <span>{{takeOffCityComeback}}</span>
+                        </div>
+                        <p>
+                            <strong>{{formattedTimeFrom('takeOffComeback')}}</strong>
+                            to
+                            <strong>{{formattedTimeTo('takeOffComeback')}}</strong>
+                        </p>
+
+                        <rzslider
+                                rz-slider-model="takeOffComebackFilter.min"
+                                rz-slider-high="takeOffComebackFilter.max"
+                                rz-slider-options="takeOffComebackFilter.options"></rzslider>
+                    </div>
+                </div>
+
+                <div class="tab-pane" ng-class="{active: timeTab == 'landing'}">
+                    <div class='label'>{{ 'RESULTS.LANDING' | translate }}:
+                        <span>{{landingCityForward}}</span>
+                    </div>
+
+                    <div>
+                        <p>
+                            <strong>{{formattedTimeFrom('landingForward')}}</strong>
+                            to
+                            <strong>{{formattedTimeTo('landingForward')}}</strong>
+                        </p>
+
+                        <rzslider
+                                rz-slider-model="landingForwardFilter.min"
+                                rz-slider-high="landingForwardFilter.max"
+                                rz-slider-options="landingForwardFilter.options"></rzslider>
+                    </div>
+
+                    <div ng-show="landingCityComeback">
+                        <div class='label'>{{ 'RESULTS.LANDING' | translate }}:
+                            <span>{{landingCityComeback}}</span>
+                        </div>
+                        <p>
+                            <strong>{{formattedTimeFrom('landingComeback')}}</strong>
+                            to
+                            <strong>{{formattedTimeTo('landingComeback')}}</strong>
+                        </p>
+
+                        <rzslider
+                                rz-slider-model="landingComebackFilter.min"
+                                rz-slider-high="landingComebackFilter.max"
+                                rz-slider-options="landingComebackFilter.options"></rzslider>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

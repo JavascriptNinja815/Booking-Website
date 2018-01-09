@@ -1,0 +1,62 @@
+/* CHECKBOXES */
+
+input[type="checkbox"] {
+  display: none;
+
+  & + label {
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 14px;
+    span {
+      vertical-align: middle;
+    }
+  }
+
+  & + label span:first-child {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px 0 0;
+    vertical-align: middle;
+    background: url('../../images/checkboxes/checkbox_unchecked.png') no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    cursor: pointer;
+  }
+
+  &:checked + label span:first-child {
+    background: url('../../images/checkboxes/checkbox_checked.png') no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+}
+
+input[type="radio"] {
+  display: none;
+
+  & + label {
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  & + label span:first-child {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    margin: -1px 4px 0 0;
+    vertical-align: middle;
+    background: url('../../images/checkboxes/radio_unchecked.png') no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    cursor: pointer;
+  }
+
+  &:checked + label span:first-child {
+    background: url('../../images/checkboxes/radio_checked.png') no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+}
+
+

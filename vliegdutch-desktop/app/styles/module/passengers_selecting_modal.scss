@@ -1,0 +1,66 @@
+@import "../tool/variables";
+
+#passengers-selecting-modal {
+
+  .modal-header {
+    border: none;
+
+    .close {
+      color: $blue;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  #passengersModalTitle {
+    text-align: center;
+  }
+
+  .passangers-table {
+
+    width: 55%;
+    margin: 0 auto;
+    text-align: center;
+
+    td {
+      border-top: none !important;
+      border-left: none !important;
+      padding: 0 !important;
+      width: 33%;
+    }
+  }
+
+  .passengers-count {
+
+    td {
+      padding: 2px;
+
+      select {
+        width: 70px;
+      }
+    }
+  }
+
+  .circle-icon {
+
+    float: left;
+
+    i {
+      border-radius: 100%;
+      border: 2px solid $blue;
+      padding: 3px 7px;
+      color: $blue;
+      margin-right: 5px;
+    }
+  }
+
+  .flight-amount {
+    color: #e92133;
+    font-size: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+}

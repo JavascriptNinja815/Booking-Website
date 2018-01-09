@@ -1,0 +1,49 @@
+@import "../tool/variables";
+@import "../tool/mixins";
+@import "fonts";
+
+/* === BASIC STYLES === */
+
+* {
+  outline: none;
+}
+
+.text-red {
+  color: #e92133;
+}
+
+.text-blue {
+  color: $blue;
+}
+
+.text-blue-1 {
+  color: $blue-1;
+}
+
+.text-blue-2 {
+  color: $blue-2;
+}
+
+.text-orange {
+  color: $orange;
+}
+
+.text-pink {
+  color: $pink;
+}
+
+strong, b {
+  font-weight: bold;
+}
+
+a {
+  outline: none;
+  cursor: pointer;
+}
+
+h3 {
+  line-height: 40px;
+  font-weight: 300;
+  color: $blue;
+}
+

@@ -1,0 +1,46 @@
+#loading-page {
+  .loading-card {
+    padding: 1rem;
+
+    p {
+      width: 100%;
+      text-align: center;
+      font-size: 13px;
+      color: #515151;
+    }
+
+    .loader {
+      height: 5rem;
+      width: 5rem;
+      margin: 0.5rem auto;
+      border-width: 0.5rem;
+    }
+  }
+
+  .benefit-card {
+    img {
+      height: 6rem;
+      margin: 0.5rem 0 0.5rem 2rem;
+      display: inline;
+    }
+
+    background: url(../images/benefits/benefits_bg.png) no-repeat;
+    background-size: cover;
+
+    & > div {
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 2rem;
+      margin-left: 2rem;
+      color: #FFF;
+
+      h5, p {
+        margin: 0;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}

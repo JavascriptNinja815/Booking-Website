@@ -1,0 +1,161 @@
+<form id="search" class="search-form oneline-search" ng-submit="doSearch()">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="list-unstyled flight-type-selector">
+                <li ng-class="{active: (mode == 'roundtrip')}" ng-click="setMode('roundtrip')">
+                    <i class="material-icons tiny">cached</i>{{ 'SEARCH.ROUND_TRIP' | translate }}
+                </li>
+                <li ng-class="{active: (mode == 'one-way')}" ng-click="setMode('one-way')">
+                    <i class="material-icons tiny">redo</i>{{ 'SEARCH.ONE_WAY' | translate }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="search-wrapper">
+                <div class="autocomplete-container input-with-icon input-group" style="width: 20%;">
+                    <i class="fa fa-map-marker"></i>
+                    <input type="text"
+                           class="form-control"
+                           id="departure-location"
+                           placeholder="{{ 'SEARCH.FROM' | translate }}"
+                           autocomplete="off"
+                           ng-focus="activeAutocomplete('departure')"
+                           ng-blur="validateLocation('departure')"
+                           ng-model="departureLocationModel"
+                           ng-model-options="{getterSetter: true}">
+                    <div class="autocomplete-search-results"
+                         ng-if="departureLocationsResults && departureLocationsResults.length > 0">
+                        <ul class="list-unstyled">
+
+                            <li ng-repeat="location in departureLocationsResults">
+                                <a class='autocomplete-element'
+                                   ng-click="setLocation('departure', location)">
+                                    <img ng-src="images/flags/{{location.countryName}}.png" alt=""/>
+                                    <div class="title">{{locationName(location)}}</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="autocomplete-container input-with-icon input-group" style="width: 20%;">
+                    <i class="fa fa-map-marker"></i>
+                    <input type="text"
+                           class="form-control"
+                           id="arrival-location"
+                           placeholder="{{ 'SEARCH.TO' | translate }}"
+                           autocomplete="off"
+                           ng-focus="activeAutocomplete('arrival')"
+                           ng-blur="validateLocation('arrival')"
+                           ng-model="arrivalLocationModel"
+                           ng-model-options="{getterSetter: true}">
+                    <div class="autocomplete-search-results"
+                         ng-if="arrivalLocationsResults && arrivalLocationsResults.length > 0">
+                        <ul class="list-unstyled">
+                            <li ng-repeat="location in arrivalLocationsResults">
+                                <a class='autocomplete-element'
+                                   ng-click="setLocation('arrival', location)">
+                                    <img ng-src="images/flags/{{location.countryName}}.png" alt=""/>
+                                    <div class="title">{{locationName(location)}}</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <span class="input-with-icon action-inputs input-group" style="width: 15%;">
+       <label for="departure-date"><i class="fa fa-calendar"></i></label>
+        <input type="text"
+               autocomplete="off"
+               class="form-control"
+               id="departure-date"
+               ui-date="departureCalendarOptions"
+               ng-model="departureDate"
+               placeholder="{{ 'SEARCH.DEPART' | translate }}">
+      </span>
+
+                <span class="input-with-icon action-inputs input-group" style="width: 15%">
+        <label for="comeback-date"><i class="fa fa-calendar"></i></label>
+        <input type="text"
+               autocomplete="off"
+               class="form-control"
+               id="comeback-date"
+               ui-date="comebackCalendarOptions()"
+               ng-model="comebackDate"
+               ng-disabled="mode != 'roundtrip'"
+               placeholder="{{ 'SEARCH.RETURN' | translate }}">
+      </span>
+
+                <div class="input-with-icon input-with-dropdown dropdown input-group"
+                     style="width: 16%;">
+                    <i class="fa fa-user"></i>
+                    <div id="passengers-select dropdown-toggle" data-toggle="dropdown">
+                        <div id="passengers-count-preview-price-calendar" class="form-control">
+                            <span>{{passengersSummary()}}</span>
+                        </div>
+                        <a class='dropdown-arrow'><span class='caret'></span></a>
+                    </div>
+
+                    <ul id="passengers-count-select" class="dropdown-menu">
+                        <li ng-click="$event.stopPropagation()">
+                            <div class="amount-control">
+                                <label>{{ 'SEARCH.ADULTS' | translate }}<span>12+ yr</span></label>
+                                <a class="plus"
+                                   ng-class="{disabled: adults >= 10}"
+                                   ng-click="incremenPassengers('adults')">+</a>
+                                <span class="amount">{{adults}}</span>
+                                <a class="minus"
+                                   ng-class="{disabled: adults == 1}"
+                                   ng-click="decrementPassengers('adults')">-</a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+
+                        <li ng-click="$event.stopPropagation()">
+                            <div class="amount-control">
+                                <label>{{ 'SEARCH.CHILDREN' | translate }}<span>2-12 yr</span></label>
+                                <a class="plus"
+                                   ng-class="{disabled: children >= 10}"
+                                   ng-click="incremenPassengers('children')">+</a>
+                                <span class="amount">{{children}}</span>
+                                <a class="minus"
+                                   ng-class="{disabled: children == 0}"
+                                   ng-click="decrementPassengers('children')">-</a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+
+                        <li ng-click="$event.stopPropagation()">
+                            <div class="amount-control">
+                                <label>{{ 'SEARCH.BABIES' | translate }}<span>under 2 yr</span></label>
+                                <a class="plus"
+                                   ng-class="{disabled: babies >= 10}"
+                                   ng-click="incremenPassengers('babies')">+</a>
+                                <span class="amount">{{babies}}</span>
+                                <a class="minus"
+                                   ng-class="{disabled: babies == 0}"
+                                   ng-click="decrementPassengers('babies')">-</a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a class="btn btn-default close-btn"
+                               ng-click="showPassengersSelect = false">{{ 'SEARCH.CLOSE' | translate }}</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="search_button" style="width: 14%">
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">{{ 'SEARCH.SEARCH_FLIGHTS' |
+                        translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

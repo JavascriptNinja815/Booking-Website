@@ -1,0 +1,196 @@
+<go-top ng-if="flights" top="2770"></go-top>
+<div id="results-page" data-type="return">
+    <div class="search-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <search-form-sec></search-form-sec>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="container content loading" ng-if="!flights">
+            <div class="card loading-card">
+                <p>
+                    {{ 'RESULTS.SEARCHING_1' | translate }}
+                    <br/>
+                    {{ 'RESULTS.SEARCHING_2' | translate }}
+                </p>
+                <div class="loader"></div>
+            </div>
+        </div>
+        <div class="container content" ng-if="flights && flights.length == 0">
+            <div class="card nothing-found">
+                <h3>
+                    NO RESULTS FOUND FOR GIVEN SEARCH PARAMETERS
+                </h3>
+            </div>
+        </div>
+        <div class="container" ng-if="flights && flights.length > 0">
+            <div class="row">
+                <div id="left-sidebar" class="col-md-3">
+                    <div id="get-alert-block" class="text-center">
+                        <a class="btn btn-primary btn-lg btn-block show-alert-form-btn"
+                           ng-class="{hidden: showLowestPricesPanel}"
+                           ng-click="showLowestPricesPanel = true">
+                            <i class="material-icons tiny">notifications</i>
+                            <span>{{ 'RESULTS.GET_LOWEST_PRICE_ALERT' | translate }}</span>
+                        </a>
+
+                        <div class="panel panel-default alert-form" ng-class="{hidden: !showLowestPricesPanel}">
+                            <button class="close" ng-click="showLowestPricesPanel = false"><span aria-hidden="true">&times;</span>
+                            </button>
+                            <p>
+                                {{ 'RESULTS.LOWEST_PRICE_ALERT_1' | translate }}
+                                <br/>
+                                {{ 'RESULTS.LOWEST_PRICE_ALERT_2' | translate }}
+                            </p>
+                            <form ng-submit="alert(flights[0].general.cachedUID)" name="alertForm">
+                                <div class="form-group">
+                                    <input type="email" class="form-control text-center" id="alert-email"
+                                           placeholder="{{ 'RESULTS.EMAIL_PLACEHOLDER' | translate }}"
+                                           ng-model="alertModel.email" required>
+                                </div>
+                                <button ng-disabled="alertForm.$invalid" type="submit"
+                                        class="btn btn-primary btn-large-blue" ng-click="showLowestPricesPanel = false">
+                                    {{ 'RESULTS.CREATE_ALERT' |
+                                    translate }}
+                                </button>
+                            </form>
+                        </div>
+                        <div class="panel panel-default alert-success hidden">
+                            <p class="success">{{ 'RESULTS.CREATE_ALERT_SUCCESS' | translate }}</p>
+                        </div>
+                    </div>
+                    <div id="filters-panel" class="panel-group" ng-if="flights">
+                        <div id="filters-title" class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4>{{ 'RESULTS.RESULTS_FILTER' | translate }}</h4>
+                                <div class="results-count">
+                                    <span class="results">{{(flights | filter:filterFligts).length}}</span>
+                                    &nbsp;of&nbsp;
+                                    <span class="total">{{flights.length}}</span>
+                                    &nbsp;results
+                                </div>
+                                <a ng-click="togglePriceMatrix()">{{ 'RESULTS.SHOW_PRICES_MATRIX' | translate }}
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <filter-stops filters="filters" flights="flights"></filter-stops>
+                        <filter-duration filters="filters" flights="flights"></filter-duration>
+                        <filter-times filters="filters" flights="flights"></filter-times>
+                        <filter-airports filters="filters" flights="flights"></filter-airports>
+                        <filter-airlines filters="filters" flights="flights"></filter-airlines>
+                        <filter-layover-airports filters="filters" flights="flights"></filter-layover-airports>
+                        <filter-quality filters="filters"></filter-quality>
+                    </div>
+                </div>
+                <div id="results-list" class="col-md-9">
+                    <prices-matrix show="showPriceMatrix"
+                                   mode="mode"
+                                   search-options="searchOptions"
+                                   on-close="togglePriceMatrix()"
+                                   prices="matrixPrices"></prices-matrix>
+                    <div class="row" ng-if="flights">
+                        <div class="col-md-12 flight-options-area">
+                            <ul class="list-unstyled flight-options col-md-12">
+                                <li ng-click="sortBy('price')" ng-class="{active: sortProperty == 'price'}">
+                                    <div class="clearfix">
+                                        <span class="pull-left">{{ 'RESULTS.CHEAPEST' | translate }}</span>
+                                        <span class="pull-right">{{(flights | orderBy:'price')[0].price | currency:'€'}}</span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <span class="pull-left flight-option-element-last-child">8h 30m</span>
+                                    </div>
+                                </li>
+                                <li ng-click="sortBy('quickestIndex')"
+                                    ng-class="{active: sortProperty == 'quickestIndex'}">
+                                    <div class="clearfix">
+                                        <span class="pull-left">{{ 'RESULTS.QUICKEST' | translate }}</span>
+                                        <span class="pull-right">{{(flights | orderBy:'quickestIndex')[0].price | currency:'€'}}</span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <span class="pull-left flight-option-element-last-child">6h 05m</span>
+                                    </div>
+                                </li>
+                                <li ng-click="sortBy('bestIndex')" ng-class="{active: sortProperty == 'bestIndex'}">
+                                    <div class="clearfix">
+                                        <span class="pull-left">{{ 'RESULTS.BEST' | translate }}</span>
+                                        <span class="pull-right">{{(flights | orderBy:'bestIndex')[0].price | currency:'€'}}</span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <span class="pull-left flight-option-element-last-child">7h 55m</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="results-item" ng-class="{result_item_first_child: $first}" bindonce
+                         ng-repeat="flight in flights | filter:filterFligts | orderBy:sortProperty | limitTo:flightsPerPage">
+                        <div class="panel panel-default offer-element">
+                            <div class="row general-info">
+                                <div class="col-md-9 flight-plan">
+                                    <flight-row class="first_flight_row" type="departure" sector="flight.forwardSector"
+                                                segments="flight.forwardSegments"></flight-row>
+                                    <flight-row class="second_flight_row" ng-if="flight.comebackSegments.length > 0"
+                                                type="comeback" sector="flight.comebackSector"
+                                                segments="flight.comebackSegments"></flight-row>
+                                    <div class="summary">
+                                        <div class="row">
+                                            <div class="col-md-12 clickable"
+                                                 ng-click="flight.showDetails = !flight.showDetails">
+                                                <a class="show-details">
+                                                    <span ng-if="flight.showDetails">{{ 'RESULTS.HIDE_DETAILS' | translate }}</span>
+                                                    <span ng-if="!flight.showDetails">{{ 'RESULTS.VIEW_DETAILS' | translate }}</span>
+                                                    <i class="material-icons tiny">
+                                                        {{flight.showDetails ? 'keyboard_arrow_up' :
+                                                        'keyboard_arrow_down'}}
+                                                    </i>
+                                                </a>
+                                                <span class="additional-fees">{{ 'RESULTS.WITHOUT_SERVICE_FEE' | translate }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 text-right right-block">
+                                    <span class="best-deal">BEST DEAL</span>
+                                    <div class="price-wrapper">
+                                    <span class="price-value">
+                                        <small>€</small>
+                                        <strong>
+                                            <span bo-bind="flight.priceRound"></span>
+                                            <sup bo-bind="flight.priceCents"></sup>
+                                        </strong>
+                                    </span>
+                                        <span class="price-per-person">{{pricePerPassenger}}</span>
+                                        <span class="seats-left">{{seatsLeft(flight.leftPlaces)}}</span>
+                                        <a class="btn btn-success book-now"
+                                           ng-href="/#/booking?wurl=/orders_flights/enter_data/{{flight.general.cachedUID}}/{{flight.general.priceKey}}">BOOK
+                                            NOW
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flight-details" ng-if="flight.showDetails">
+                                <flight-details sector="flight.forwardSector"
+                                                segments="flight.forwardSegments"></flight-details>
+                                <flight-details ng-if="flight.comebackSector != 0" sector="flight.comebackSector"
+                                                segments="flight.comebackSegments"></flight-details>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="flights && flights.length > flightsPerPage">
+                        <div class="col-md-12">
+                            <a ng-click="showMore()" class="btn btn-default btn-block show-more-btn">{{
+                                'RESULTS.LOAD_MORE' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

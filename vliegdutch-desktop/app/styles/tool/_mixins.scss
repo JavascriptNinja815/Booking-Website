@@ -1,0 +1,85 @@
+/* ===== MIXIN ===== */
+
+@mixin gradient-bg($start, $stop) {
+  background: $start;
+  background: -webkit-linear-gradient($start, $stop);
+  background: -o-linear-gradient($start, $stop);
+  background: -moz-linear-gradient($start, $stop);
+  background: linear-gradient($start, $stop);
+}
+
+@mixin vertical-gradient-bg($start, $stop) {
+  background: $start;
+  background: -webkit-linear-gradient(left, $start, $stop);
+  background: -o-linear-gradient(right, $start, $stop);
+  background: -moz-linear-gradient(right, $start, $stop);
+  background: linear-gradient(to right, $start, $stop);
+}
+
+@mixin rotate($angle) {
+  -webkit-transform: rotate(#{$angle}deg);
+  -moz-transform: rotate(#{$angle}deg);
+  -ms-transform: rotate(#{$angle}deg);
+  -o-transform: rotate(#{$angle}deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=$angle / 30);
+}
+
+@mixin shadow($params) {
+  -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+  box-shadow: $params;
+}
+
+/* == Fonts Mixin == */
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+
+  $extmods: (
+          eot: "?",
+          svg: "#" + str-replace($name, " ", "_")
+  );
+
+  $formats: (
+          otf: "opentype",
+          ttf: "truetype"
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+
+/* == Input Placeholder == */
+@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+@mixin placeholder {
+  @include optional-at-root('::-webkit-input-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root('::-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-ms-input-placeholder') {
+    @content;
+  }
+}

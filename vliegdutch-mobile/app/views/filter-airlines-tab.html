@@ -1,0 +1,21 @@
+<!--<a href="#" class="reset-btn">RESET</a>-->
+<div class="filter-body">
+    <ul class="check-options">
+        <li bindonce ng-repeat="carrier in carriers">
+            <input type="checkbox" class="filled-in" ng-model="carrier.checked"/>
+            <label ng-click="toggleItem(carrier)">
+                <div class="carrier-logo">
+                    <img bo-src-i="http://pics.avs.io/200/200/{{carrier.carrier}}.png"/>
+                </div>
+                <span bo-bind="carrier.carrierName"></span>
+            </label>
+        </li>
+
+        <!--<li>-->
+        <!--<input type="checkbox" class="filled-in" ng-model="multipleAirlines" />-->
+        <!--<label ng-click="toggleMultipleAirlines()">-->
+        <!--<span>Multiple Arilines</span>-->
+        <!--</label>-->
+        <!--</li>-->
+    </ul>
+</div>

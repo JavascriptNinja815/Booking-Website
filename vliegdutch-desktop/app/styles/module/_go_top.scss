@@ -1,0 +1,29 @@
+@import "../tool/variables";
+
+#GoToTop {
+  position: fixed;
+  right: 20px;
+  bottom: 70px;
+  z-index: 9999;
+  text-align: center;
+  padding: 3px 13px;
+  border-radius: 50%;
+  border: 1px solid #277cee;
+  font-size: 25px;
+  background: #277cee;
+  cursor: pointer;
+  outline: none !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.1s, opacity 0.5s linear;
+  background: $blue;
+  color: $white !important;
+  &:hover {
+    color: $white;
+  }
+}
+
+#GoToTop.show {
+  opacity: 1;
+  visibility: visible;
+}

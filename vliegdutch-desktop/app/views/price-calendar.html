@@ -1,0 +1,163 @@
+<go-top top="1200"></go-top>
+<passengers-selecting-modal show="showPassengersModal" flight="currentFlight"></passengers-selecting-modal>
+<div id="price-calendar">
+    <div class="container">
+        <div class="row">
+            <ul class="navigation-crumbs">
+                <li class="visited"><a href="/">{{ 'PRICE_CALENDAR.HOME' | translate }}</a></li>
+                <li class="visited">{{ 'PRICE_CALENDAR.PRICE_CALENDAR' | translate }}</li>
+                <li class="current">
+                    <span ng-if="departureLocation">{{departureLocation.cityName}} {{'(' + departureLocation.cityCode + ')'}}</span>
+                    <span ng-if="departureLocation && arrivalLocation">{{'- ' + arrivalLocation.cityName}} {{'(' + arrivalLocation.cityCode + ')'}}</span>
+                    <span ng-if="roundTrip && arrivalLocation && departureLocation">{{'- ' + departureLocation.cityName}}  {{'(' + departureLocation.cityCode + ')'}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container price-container">
+        <div class="row">
+            <div class="col-md-3">
+                <div id="filters-panel" class="panel panel-default">
+                    <form>
+                        <div id="flight-selection">
+                            <div class="flip-destinations"
+                                 ng-click="flipDestinations()">
+                                <i class="material-icons">import_export</i>
+                            </div>
+                            <div class="autocomplete-container input-with-icon flight-from">
+                                <i class="fa fa-map-marker"></i>
+                                <input type="text"
+                                       class="form-control"
+                                       id="departure-location"
+                                       placeholder="{{ 'PRICE_CALENDAR.DEPARTURE_PLACE' | translate }}"
+                                       autocomplete="off"
+                                       ng-focus="focusLocation('departure')"
+                                       ng-blur="validateLocation('departure')"
+                                       ng-model="departureLocationModel"
+                                       ng-model-options="{getterSetter: true}">
+                                <div class="autocomplete-search-results"
+                                     ng-if="departureLocationsResults && departureLocationsResults.length > 0">
+                                    <ul class="list-unstyled">
+                                        <li ng-repeat="location in departureLocationsResults">
+                                            <a class='autocomplete-element'
+                                               ng-click="setLocation('departure', location)">
+                                                <img ng-src="images/flags/{{location.countryName}}.png" alt=""/>
+                                                <div class="title">{{locationName(location)}}</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="autocomplete-container input-with-icon flight-to">
+                                <i class="fa fa-map-marker"></i>
+                                <input type="text"
+                                       class="form-control"
+                                       id="arrival-location"
+                                       placeholder="{{ 'PRICE_CALENDAR.ARRIVAL_PLACE' | translate }}"
+                                       autocomplete="off"
+                                       ng-focus="focusLocation('arrival')"
+                                       ng-blur="validateLocation('arrival')"
+                                       ng-model="arrivalLocationModel"
+                                       ng-model-options="{getterSetter: true}">
+                                <div class="autocomplete-search-results"
+                                     ng-if="arrivalLocationsResults && arrivalLocationsResults.length > 0">
+                                    <ul class="list-unstyled">
+                                        <li ng-repeat="location in arrivalLocationsResults">
+                                            <a class='autocomplete-element'
+                                               ng-click="setLocation('arrival', location)">
+                                                <img ng-src="images/flags/{{location.countryName}}.png" alt=""/>
+                                                <div class="title">{{locationName(location)}}</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flight-type-filters">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" ng-class="{active: !roundTrip}">
+                                    <a ng-click="setRoundTrip(false)">{{ 'SEARCH.ONE_WAY' | translate }}</a>
+                                </li>
+                                <li role="presentation" ng-class="{active: roundTrip}">
+                                    <a ng-click="setRoundTrip(true)">{{ 'SEARCH.ROUND_TRIP' | translate }}</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="roundtrip">
+                                    <div class="filter travel-period-filter">
+                                        <h5>{{ 'PRICE_CALENDAR.TRAVEL_PERIOD' | translate }}</h5>
+                                        <p>{{travelPeriodDate('min', 'DD MMM YYYY')}} - {{travelPeriodDate('max', 'DD
+                                            MMM YYYY')}}</p>
+
+                                        <div class='slider-wrapper'>
+                                            <rzslider
+                                                    rz-slider-model="travelPeriodSlider.min"
+                                                    rz-slider-high="travelPeriodSlider.max"
+                                                    rz-slider-options="travelPeriodSlider.options"></rzslider>
+                                        </div>
+                                    </div>
+                                    <div ng-if="roundTrip" class="filter travel-duration-filter">
+                                        <h5>{{ 'PRICE_CALENDAR.DURATION' | translate }}</h5>
+                                        <p>{{durationSlider.min}} - {{durationSlider.max}} {{ 'PRICE_CALENDAR.DAYS' |
+                                            translate }}</p>
+
+                                        <div class='slider-wrapper'>
+                                            <rzslider
+                                                    rz-slider-model="durationSlider.min"
+                                                    rz-slider-high="durationSlider.max"
+                                                    rz-slider-options="durationSlider.options"></rzslider>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="loader" ng-if="!results"></div>
+                <div class="panel panel-default table-responsive">
+                    <table class="table table-stripped table-hover flights-list">
+                        <tbody>
+                        <tr ng-repeat="result in results"
+                            ng-click="searchByFlight(result)">
+                            <td class="destination">
+                                {{result.departure_city.name}}
+                                <i class="flight-type-icon"
+                                   ng-class="{'round-trip': roundTrip, 'one-way': !roundTrip}"></i>
+                                {{result.arrival_city.name}}
+                            </td>
+                            <td class="carriers">
+                                <img ng-if="result.carriers[1]"
+                                     ng-src="http://pics.avs.io/200/200/{{result.carriers[1]}}.png"/>
+                            </td>
+                            <td class="carriers">
+                                <img ng-if="result.carriers[0]"
+                                     ng-src="http://pics.avs.io/200/200/{{result.carriers[0]}}.png"/>
+                            </td>
+                            <td class="{{selectStopsCSS(result.stops)}}"><span> {{sanitizeStops(result.stops)}}</span>
+                            </td>
+                            <td class="date">{{result.departure_date | date: 'dd MMM yyyy'}}</td>
+                            <td class="duration">
+                                <span ng-if="result.duration">{{result.duration}}d</span>
+                            </td>
+                            <td class="price">€{{result.price.amount_display}} <i class="fa pull-right fa-angle-right"
+                                                                                  aria-hidden="true"></i></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h5 class="fares-notice text-right">{{ 'INDEX.FARES_NOTICE' | translate }}</h5>
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    </div>
+    <div class="price_page_footer">
+        <!-- empty margin -->
+    </div>
+</div>

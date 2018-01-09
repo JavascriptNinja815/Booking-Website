@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="direction">
+            <i class="fa fa-arrow-circle-right"></i>
+            <span>{{sector.departureCity}} - {{sector.arrivalCity}}</span>
+            <span>{{dayAndDate(sector.departureTime)}}</span>
+            <span>Travel time: {{sector.duration}}</span>
+        </div>
+
+        <div class="col-md-12" bindonce ng-repeat="(i, segment) in segments">
+            <table class="info">
+                <tbody>
+                <tr>
+                    <th>{{ 'RESULTS.DEPARTURE' | translate }}</th>
+                    <th>{{ 'RESULTS.ARRIVAL' | translate }}</th>
+                    <th>{{ 'RESULTS.FLIGHT_DURATION' | translate }}</th>
+                    <th>{{ 'RESULTS.CARRIER_FLIGHT' | translate }}</th>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="large">
+                            <span bo-bind="segment.shortDepartureTime"></span>
+                            <span bo-bind="segment.departureAirport"></span>
+                        </p>
+                        <p class="medium" bo-bind="segment.departureCity"></p>
+                    </td>
+                    <td>
+                        <p class="large">
+                            <span bo-bind="segment.shortArrivalTime"></span>
+                            <span bo-bind="segment.arrivalAirport"></span>
+                        </p>
+                        <p class="medium" bo-bind="segment.arrivalCity"></p>
+                    </td>
+                    <td>
+                        <p class="large" bo-bind="segment.duration"></p>
+                    </td>
+                    <td class="medium">
+                        <img class="carrier-logo" bo-src-i="http://pics.avs.io/200/200/{{segment.carrier}}.png"/>
+                        <div class="pull-left align">
+                            <p class="top-fix-3" bo-bind="segment.carrierName"></p>
+                            <p bo-bind="segment.flightNumber"></p>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="flight-more-details">
+                <p ng-cloak> Operated by: {{segment.carrierName}}</p>
+            </div>
+            <div ng-if="segments[i+1]" class="stopover-line">
+                <p>
+                    <i class="fa fa-refresh"></i>
+                    {{ 'RESULTS.LAYOVER' | translate }} {{layoverDuration(segment, segments[i+1])}} |
+                    {{segment.arrivalAirportName}} {{segment.arrivalAirport}}, {{segment.arrivalCity}}
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>

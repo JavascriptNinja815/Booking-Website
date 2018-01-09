@@ -1,0 +1,41 @@
+<div class="panel panel-default border_bottom_none filters-group with-tabs">
+    <div class="panel-heading">
+        <h4 class="panel-title" ng-click="collapsed = !collapsed">
+            {{ 'RESULTS.AIRLINES' | translate }}
+            <i class="material-icons pull-right clickable">{{headerIcon}}</i>
+        </h4>
+        <a class='reset' ng-click="reset()">({{ 'RESULTS.RESET' | translate }})</a>
+    </div>
+
+    <div class="panel-collapse collapse" ng-class="{in: !collapsed}">
+        <ul class="nav nav-tabs margin_bottom_20">
+            <li role="presentation" class="active">
+                <a class="btn">Carrier</a>
+            </li>
+            <li role="presentation">
+                <a class="btn">Alliance</a>
+            </li>
+        </ul>
+        <div class="panel-body">
+            <ul bindonce ng-repeat="airline in airlines | limitTo:optionsCount"
+                class="list-unstyled filter-options-list">
+                <li>
+                    <input type="checkbox"
+                           ng-click="toggleItem(airline)"
+                           ng-model="airline.checked"/>
+                    <label ng-click="toggleItem(airline)">
+                        <span></span>
+                        <span bo-bind="airline.airlineName"></span>
+                    </label>
+                    <span class='price'>€ {{airline.price}}</span>
+                    <span class='only' ng-click="selectOnly(airline)">{{ 'RESULTS.ONLY' | translate }}</span>
+                </li>
+            </ul>
+
+            <div class='show-more' ng-if="airlines.length > 5">
+                <a ng-click="showMore()" ng-if="!shownAll">{{ 'RESULTS.SHOW_MORE' | translate }}</a>
+                <a ng-click="showLess()" ng-if="shownAll">{{ 'RESULTS.COLLAPSE' | translate }}</a>
+            </div>
+        </div>
+    </div>
+</div>

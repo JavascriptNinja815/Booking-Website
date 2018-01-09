@@ -1,0 +1,27 @@
+<!--<a href="#" class="reset-btn">RESET</a>-->
+<div class="filter-body">
+    <ul class="check-options">
+        <li>
+            <input type="checkbox" class="filled-in" ng-model="filtersData.quality.overnightFlight"/>
+            <label ng-click="toggleFilter('overnightFlight')">
+                <img class="quality-icon" src="../images/filters/quality/overnight-flight.png" alt="Overnight flight"/>
+                {{'RESULTS.FILTER.FILTER_MODAL.QUALITY.OVERNIGHT_FLIGHT'|translate}}
+            </label>
+        </li>
+        <li>
+            <input type="checkbox" class="filled-in" ng-model="filtersData.quality.overnightLayover"/>
+            <label ng-click="toggleFilter('overnightLayover')">
+                <img class="quality-icon" src="../images/filters/quality/overnight-layover.png"
+                     alt="Overnight layover"/>
+                {{'RESULTS.FILTER.FILTER_MODAL.QUALITY.OVERNIGHT_LAYOVER'|translate}}
+            </label>
+        </li>
+        <li>
+            <input type="checkbox" class="filled-in" ng-model="filtersData.quality.shortStopover"/>
+            <label ng-click="toggleFilter('shortStopover')">
+                <img class="quality-icon" src="../images/filters/quality/short-stopover.png" alt="Short stopover"/>
+                {{'RESULTS.FILTER.FILTER_MODAL.QUALITY.SHORT_STOPOVER'|translate}}
+            </label>
+        </li>
+    </ul>
+</div>

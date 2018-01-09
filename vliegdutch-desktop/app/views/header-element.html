@@ -1,0 +1,64 @@
+<header>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-2 col-md-2 logo_area'>
+                <a class="navbar-brand" href="" ng-click="goToIndex()">
+                    <img src="../images/logo/logo.png" class="img-responsive"/>
+                </a>
+            </div>
+
+            <div class='col-sm-6 col-md-6 menu_area'>
+                <ul class="nav navbar-nav">
+                    <li ng-click="goToIndex()" ng-class="{active: currentMenuElem == 0}">
+                        <a>{{ 'TOPBAR.FLIGHTS' | translate }}</a>
+                    </li>
+                    <li ng-click="goToPriceCalendar()" ng-class="{active: currentMenuElem == 1}">
+                        <a>{{ 'TOPBAR.PRICE_CALENDAR' | translate }}</a>
+                    </li>
+                    <li>
+                        <a href="" class="margin_r_none">
+                        <span id="my-booking" class="" ng-click="showManageBookingModal = true">
+                           {{ 'TOPBAR.ETICKET' | translate }}
+                        </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class='col-sm-4 col-md-4 text-right lang_contact_area'>
+                <div class="col-md-4 col-sm-4 dropdown text-center lang">
+                    <div id="LanguageSelect" class="language-select-button dropdown-toggle position_relative"
+                         data-toggle="dropdown">
+                        <div class="">
+                            <a ng-click="collapsed = !collapsed">
+                                <img src="{{language == 'nl' ? langFlagsArr[0] : langFlagsArr[1]}}" alt="{{language}}">
+                                <span class="text_uppercase">{{language}}</span>
+                                <span class="caret"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="dropdown-menu">
+                        <ul class="language-select">
+                            <li class="" ng-click="collapsed = !collapsed">
+                                <a ng-click="changeLanguage('nl')">
+                                    <img src="../images/language_flags/lang_flag_1.png" alt="NL"><span>NL</span>
+                                </a>
+                            </li>
+                            <li class="" ng-click="collapsed = !collapsed">
+                                <a ng-click="changeLanguage('en')">
+                                    <img src="../images/language_flags/lang_flag_2.png" alt="EN"><span>EN</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="contact-information col-sm-8 col-md-8">
+           <span class="phone">
+              <i class="fa fa-mobile"></i>0900 2365254
+           </span>
+                    <span class="openning-hours">{{ 'TOPBAR.MONDAY' | translate }} - {{ 'TOPBAR.FRIDAY' | translate }} 08:00 - 18:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

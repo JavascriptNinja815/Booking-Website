@@ -1,0 +1,49 @@
+<div id="lowest-prices-block" class="panel panel-default" ng-if="show">
+
+
+    <div class="panel-body">
+        <a ng-click="close()" class="close-block action-link">
+            <!--<i class="material-icons pull-right ng-binding">close</i>-->
+            <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+        </a>
+        <div class="loader" ng-if="!results"></div>
+        <table class="matrix-table table mb-5" ng-if="results">
+            <tbody ng-if="searchOptions.comebackDate">
+            <tr>
+                <th class="t-blank"></th>
+                <th class="t-blank t-header" colspan="5">Return</th>
+            </tr>
+            <tr>
+                <td width="16%" class="t-blank t-header">Departure</td>
+                <td ng-repeat="cols in matrix[0]" width="14%" class="date">
+                    {{matrixDate(cols.c)}}
+                </td>
+            </tr>
+            <tr ng-repeat="row in matrix">
+                <td class="date">{{matrixDate(row[0].d)}}</td>
+                <td ng-repeat="cell in row" class="value search" ng-click="search(cell)">
+                    <span ng-if="cell.price">{{cell.price}}€</span>
+                    <i ng-if="!cell.price" class="fa fa-search" aria-hidden="true"></i>
+                </td>
+            </tr>
+            </tbody>
+
+            <tbody ng-if="!searchOptions.comebackDate">
+            <tr>
+                <td class="t-header t-header--oneway" colspan="6">Departure</td>
+            </tr>
+            <tr>
+                <td ng-repeat="cell in matrix" width="16%" class="date">
+                    {{matrixDate(cell.d)}}
+                </td>
+            </tr>
+            <tr>
+                <td ng-repeat="cell in matrix" width="16%" class="value search" ng-click="search(cell)">
+                    <span ng-if="cell.price">€ {{cell.price}}</span>
+                    <i ng-if="!cell.price" class="material-icons">search</i>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

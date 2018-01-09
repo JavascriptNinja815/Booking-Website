@@ -1,0 +1,66 @@
+<div class="header">
+    <i class="material-icons tiny"
+       ng-class="{depart: type == 'departure',
+              return: type == 'comeback'}">flight</i>
+    {{departureDate}}
+</div>
+
+<table class="airport">
+    <tbody>
+    <tr>
+        <td class="text-center">
+            <img ng-class="{'two-logos': segments[1], 'three-logos': segments[2]}" class="carrier-logo" bindonce
+                 bo-src-i="http://pics.avs.io/200/200/{{segments[0].carrier}}.png"/>
+            <img ng-if="segments[1]" ng-class="{'two-logos': segments[1], 'three-logos': segments[2]}"
+                 class="carrier-logo" bindonce bo-src-i="http://pics.avs.io/200/200/{{segments[1].carrier}}.png"/>
+            <img ng-if="segments[2]" ng-class="{'three-logos': segments[2]}" class="carrier-logo" bindonce
+                 bo-src-i="http://pics.avs.io/200/200/{{segments[2].carrier}}.png"/>
+        </td>
+        <td class="text-right">
+            <div>
+                <span class="take-off time" bo-bind="sector.shortDepartureTime"></span>
+                <span class="airport-code" bo-bind="sector.departureAirport"></span>
+            </div>
+            <span class="text-light" bo-bind="sector.departureCity"></span>
+        </td>
+
+        <td class="duration-col" bo-if="segments.length == 1">
+            <span class="duration" bo-bind="sector.duration"></span>
+            <span bo-if="segments.length == 1" class="direct-flight">
+          <span></span>
+          DIRECT
+        </span>
+        </td>
+
+        <td class="duration-col" bo-if="segments.length != 1">
+            <span class="duration" bo-bind="sector.duration"></span>
+            <small>{{segments.length - 1}}
+                <ng-pluralize count="{{segments.length - 1}}"
+                              when="{'1': 'stop:', 'other': 'stops:'}">
+            </small>
+            <div bindonce ng-repeat="segment in segments | limitTo:segments.length - 1">
+                <small>
+                    <span bo-bind="segment.layoverDuration"></span>
+                    <span bo-bind="segment.arrivalCity"></span>
+                </small>
+            </div>
+        </td>
+
+        <td>
+            <div>
+                <span class="take-off time" bo-bind="sector.shortArrivalTime"></span>
+                <span class="airport-code" bo-bind="sector.arrivalAirport"></span>
+                <span class="label label-default"
+                      ng-if="sector.daysDiff != 0"
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title=""
+                      data-original-title="Next day arrival">
+             + {{sector.daysDiff}}
+          </span>
+            </div>
+            <span class="text-light" bo-bind="sector.arrivalCity"></span>
+        </td>
+    </tr>
+    </tbody>
+</table>

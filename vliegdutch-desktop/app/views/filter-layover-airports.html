@@ -1,0 +1,34 @@
+<div class="panel panel-default  border_bottom_none filters-group">
+    <div class="panel-heading">
+        <h4 class="panel-title" ng-click="collapsed = !collapsed">
+            {{ 'RESULTS.LAYOVER_AIRPORTS' | translate }}
+            <i class="material-icons pull-right clickable">{{headerIcon}}</i>
+        </h4>
+        <a class='reset' ng-click="reset()">({{ 'RESULTS.RESET' | translate }})</a>
+    </div>
+    <div class="panel-collapse collapse" ng-class="{in: !collapsed}">
+        <div class="panel-body">
+            <ul bindonce
+                ng-repeat="(city, airportsList) in airports | limitTo:optionsCount | orderBy:'city' | groupBy:'city'"
+                class="list-unstyled filter-options-list">
+                <li class='title' bo-bind="city === 'undefined' ? 'Others' : city"></li>
+                <li bindonce ng-repeat="airport in airportsList">
+                    <input type="checkbox"
+                           ng-click="toggleItem(airport)"
+                           ng-model="airport.checked"/>
+                    <label ng-click="toggleItem(airport)">
+                        <span></span>
+                        <span bo-bind="airport.iata"></span>
+                        <span bo-bind="airport.name"></span>
+                    </label>
+                    <span class='only' ng-click="selectOnly(airport)">{{ 'RESULTS.ONLY' | translate }}</span>
+                </li>
+            </ul>
+
+            <div class='show-more' ng-if="airports.length > 5">
+                <a ng-click="showMore()" ng-if="!shownAll">{{ 'RESULTS.SHOW_MORE' | translate }}</a>
+                <a ng-click="showLess()" ng-if="shownAll">{{ 'RESULTS.COLLAPSE' | translate }}</a>
+            </div>
+        </div>
+    </div>
+</div>

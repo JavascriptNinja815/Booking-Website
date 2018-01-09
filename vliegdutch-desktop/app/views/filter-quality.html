@@ -1,0 +1,27 @@
+<div class="panel panel-default filters-group">
+    <div class="panel-heading">
+        <h4 class="panel-title" ng-click="collapsed = !collapsed">
+            {{ 'RESULTS.FLIGHT_QUALITY' | translate }}
+            <i class="material-icons pull-right clickable">{{headerIcon}}</i>
+        </h4>
+        <a class='reset' ng-click="reset()">({{ 'RESULTS.RESET' | translate }})</a>
+    </div>
+    <div class="panel-collapse collapse" ng-class="{in: !collapsed}">
+        <div class="panel-body">
+            <ul class="list-unstyled filter-options-list">
+                <li>
+                    <input type="checkbox" ng-model="filters.quality.overnightLayover" id="overnight-layover">
+                    <label for="overnight-layover"><span></span>{{ 'RESULTS.OVERNIGHT_LAYOVER' | translate }}</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="filters.quality.shortStopover" id="short-stopover">
+                    <label for="short-stopover"><span></span>{{ 'RESULTS.SHORT_STOPOVER' | translate }}</label>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="filters.quality.overnightFlight" id="overnight-flight">
+                    <label for="overnight-flight"><span></span>{{ 'RESULTS.OVERNIGHT_FLIGHT' | translate }}</label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

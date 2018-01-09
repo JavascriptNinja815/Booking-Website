@@ -1,0 +1,23 @@
+<div class="panel panel-default border_bottom_none filters-group">
+    <div class="panel-heading">
+        <h4 class="panel-title" ng-click="collapsed = !collapsed">
+            {{ 'RESULTS.FLIGHT_DURATION' | translate }}
+            <i class="material-icons pull-right clickable">{{headerIcon}}</i>
+        </h4>
+        <a class='reset' ng-click="reset()">({{ 'RESULTS.RESET' | translate }})</a>
+    </div>
+    <div class="panel-collapse collapse" ng-class="{in: !collapsed}">
+        <div class="panel-body time-slider">
+            <p>
+                <strong class='from-time-range'>{{formattedTime(filters.duration[0])}}</strong>
+                to
+                <strong class='to-time-range'>{{formattedTime(filters.duration[1])}}</strong>
+            </p>
+
+            <rzslider
+                    rz-slider-model="filters.duration[0]"
+                    rz-slider-high="filters.duration[1]"
+                    rz-slider-options="sliderOptions"></rzslider>
+        </div>
+    </div>
+</div>

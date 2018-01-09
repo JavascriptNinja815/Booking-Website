@@ -1,0 +1,76 @@
+@import "../tool/variables";
+@import "../tool/mixins";
+@import "../base/fonts";
+
+/* === FOOTER === */
+
+footer {
+  @include shadow(0 -1px 4px 0 rgba(0, 0, 0, 0.18));
+  background-color: $white;
+  padding: 40px 0;
+  margin-top: 20px;
+
+  &.min > .container {
+    padding: 10px 0;
+  }
+
+  li {
+    padding: 3px 0;
+    font-weight: lighter;
+  }
+
+  a {
+    color: $black-2;
+    font-weight: normal;
+
+    &:hover {
+      color: #888;
+      text-decoration: underline;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  .follow-us-holder a {
+    color: $light-blue;
+
+    &:hover {
+      color: #386584;
+    }
+  }
+
+  h5 {
+    font-size: 15px;
+    font-weight: 600;
+    color: $black-2;
+  }
+
+  ul {
+    margin-bottom: 25px;
+  }
+
+  #form-subscribe {
+    margin-bottom: 30px;
+    margin-top: 15px;
+
+    .btn-submit {
+      background-color: $blue;
+      color: #FFF;
+      border: none;
+      i {
+        font-size: 19px;
+      }
+    }
+  }
+
+  .payment-methods img {
+    height: 22px;
+    margin-right: 10px;
+  }
+
+  .connect img {
+    height: 40px;
+  }
+}

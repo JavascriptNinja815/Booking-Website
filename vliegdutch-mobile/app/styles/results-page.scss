@@ -1,0 +1,314 @@
+$primary: #277cee;
+
+#results-page {
+  .search-params-card {
+    padding: 1rem;
+    font-size: 13px;
+
+    & > .row {
+      margin-bottom: 0;
+    }
+
+    .flight-type-icon {
+      display: inline-block;
+      font-size: 14px;
+      text-align: center;
+      margin: 0 5px;
+      width: 18px;
+      height: 16px;
+      &.one-way {
+        background: url("../images/mode/one-way.png") center center no-repeat;
+        background-size: contain;
+      }
+      &.round-trip {
+        background: url("../images/mode/round-trip.png") center center no-repeat;
+        background-size: contain;
+      }
+    }
+
+    .dates {
+      text-align: right;
+    }
+  }
+
+  .flight-card {
+    .flight-row {
+      margin: 0;
+      padding: 0.5rem;
+      border-bottom: solid #E1E0E0 1px;
+
+      .carrier {
+        margin-bottom: -15px;
+
+        img {
+          margin-right: 10px;
+          max-height: 50px;
+          max-width: 90px;
+        }
+      }
+
+      .col {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+
+      .departure, .arrival {
+        & > span {
+          display: inline-block;
+          width: 100%;
+          color: #555;
+        }
+
+        & > small {
+          color: #ACACAC;
+        }
+      }
+
+      .departure {
+        text-align: right;
+      }
+
+      .duration {
+        text-align: center;
+
+        & > span:first-child {
+          display: inline-block;
+          width: 100%;
+          font-size: 13px;
+          margin-top: 0.3rem;
+        }
+
+        small {
+          display: inline-block;
+          width: 100%;
+          text-align: center;
+          font-size: 10px;
+          color: #ACACAC;
+        }
+
+        .direct-flight {
+          color: #9C0;
+          font-weight: bold;
+          font-size: 11px;
+
+          & > span {
+            border: solid 1px;
+            display: inline-block;
+            width: 40px;
+            margin: 0 5px 4px 5px;
+          }
+        }
+      }
+    }
+
+    .price-row {
+      p {
+        padding-left: 1rem;
+        color: #999999;
+      }
+
+      .price {
+        font-size: 25px;
+        font-weight: bold;
+        margin-top: 0.5rem;
+        display: inline-block;
+        color: #E32626;
+
+        sup {
+          font-size: 14px;
+          top: -1em;
+        }
+      }
+    }
+  }
+
+  .results-action-buttons {
+    border-top: solid #DCDCDC 1px;
+    height: 4rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+
+    & > a {
+      display: inline-block;
+      width: 49%;
+      text-align: center;
+      line-height: 4;
+      color: #000;
+      cursor: pointer;
+
+      &:first-child {
+        border-right: solid #DCDCDC 1px;
+      }
+    }
+  }
+
+  #sort-modal {
+    border-top: solid #D4D4D4 1px;
+    bottom: 0;
+
+    .btn {
+      box-shadow: none;
+      font-weight: bold;
+      color: #5E5E5E;
+      text-align: left;
+      background-color: #FFF;
+      border: solid #D0D0D0 1px;
+      height: 3.5rem;
+      text-transform: none;
+      margin-bottom: 1rem;
+      padding: 0 1rem;
+
+      &.active {
+        background-color: #1976d2;
+        color: #FFF;
+      }
+
+      span {
+        line-height: 3.5;
+      }
+
+      span + span {
+        float: right;
+      }
+    }
+  }
+
+  #filters-modal {
+    height: 100%;
+    background-color: #F1F9FF;
+
+    ul.tabs {
+      font-size: 12px;
+      height: 36px;
+
+      .tab {
+        padding: 0;
+        height: 36px;
+        line-height: 40px;
+        min-width: 45px;
+
+        a {
+          color: #000;
+          font-size: 18px;
+        }
+
+        img {
+          width: 25px !important;
+          margin-top: 5px;
+        }
+      }
+    }
+
+    .tabs-card {
+      margin: 2%;
+    }
+
+    .filter-card {
+      height: 80%;
+      width: 96%;
+      z-index: 1000;
+      background: #FFF;
+      margin: -0.5rem 2% 2%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+
+      .filter-tab {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      &.active {
+        display: block;
+      }
+
+      .filter-body {
+        flex-grow: 1;
+        overflow-y: auto;
+      }
+
+      .save-btn {
+        margin-top: 1rem;
+        padding: 0;
+      }
+
+      .reset-btn {
+        text-align: right;
+        color: #D4D4D4;
+      }
+
+      &.changed {
+        .reset-btn {
+          color: #f57c00;
+        }
+      }
+
+      h5 {
+        font-size: 15px;
+      }
+
+      .check-options {
+        [type="checkbox"] + label {
+          color: #000;
+          border: solid #C8C8C8 1px;
+          width: 100%;
+          height: 45px;
+          line-height: 3;
+          padding-left: 1rem;
+          border-radius: 3px;
+          margin-bottom: 1rem;
+
+          .carrier-logo {
+            float: left;
+            width: 50px;
+            margin: 5px;
+
+            img {
+              max-width: 45px;
+              max-height: 30px;
+            }
+          }
+
+          .quality-icon {
+            float: left;
+            width: 20px;
+            margin-right: 1rem;
+            margin-top: 10px;
+          }
+        }
+
+        [type="checkbox"].filled-in:not(:checked) + label:after,
+        [type="checkbox"].filled-in:not(:checked) + label:before,
+        [type="checkbox"].filled-in:checked + label:after,
+        [type="checkbox"].filled-in:checked + label:before {
+          top: 10px;
+          left: calc(100% - 2rem);
+        }
+
+        [type="checkbox"].filled-in:checked + label:after {
+          border: 2px solid #1976d2;
+          background-color: #1976d2;
+        }
+
+      }
+
+      .range-slider {
+        margin: 1rem 2rem 3rem 2rem;
+      }
+
+      ul.tabs {
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+
+        a.active {
+          background-color: $primary;
+          color: #FFF;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+}

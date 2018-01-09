@@ -1,0 +1,66 @@
+@import "../tool/variables";
+/* MANAGEMENT MODAL */
+
+#order-management-modal {
+  .modal-header {
+    border: none;
+
+    .close {
+      color: $blue;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .modal-content {
+    p {
+      font-size: 13px;
+      color: #888;
+    }
+
+    .form-group {
+      margin-top: 40px;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    .forgot-number {
+      float: right;
+      color: #0085ca;
+      border-bottom: dashed 1px;
+      margin-top: 3px;
+      font-size: 13px;
+    }
+  }
+  .modal-footer {
+    border: none;
+  }
+}
+
+#forgot-booking-number-modal {
+  .modal-header {
+    border: none;
+
+    .close {
+      color: $blue;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .modal-footer {
+    border: none;
+  }
+}
+
+#order-management-modal > .modal-dialog:first-child,
+#forgot-booking-number-modal > .modal-dialog:first-child {
+  width: 380px;
+}

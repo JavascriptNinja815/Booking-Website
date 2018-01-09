@@ -1,0 +1,157 @@
+<div class="container content" id="loading-page" ng-if="!flights">
+    <div class="card loading-card">
+        <p>
+            {{'LOADING.HEADER'|translate}}
+            <br/>
+            {{'LOADING.PLEASE_WAIT'|translate}}
+        </p>
+        <div class="loader"></div>
+    </div>
+
+    <div class="card benefit-card">
+        <img src="../images/benefits/benefits-cancellation.png" alt="Free Travel Cancellation"/>
+        <div>
+            <h5>{{'LOADING.FREE'|translate}}</h5>
+            <p>{{'LOADING.TRAVEL_CANCELLATION'|translate}}</p>
+        </div>
+    </div>
+    <div class="card benefit-card">
+        <img src="../images/benefits/benefits-online-check-in.png" alt="Free Online check-in"/>
+        <div>
+            <h5>{{'LOADING.FREE'|translate}}</h5>
+            <p>{{'LOADING.ONLINE_CHECK_IN'|translate}}</p>
+        </div>
+    </div>
+    <div class="card benefit-card">
+        <img src="../images/benefits/benefits-transaction-fee.png" alt="€15 transaction fee"/>
+        <div>
+            <h5>€15</h5>
+            <p>{{'LOADING.TRANSACTION_FEE'|translate}}</p>
+        </div>
+    </div>
+</div>
+
+<div id="results-page" ng-if="flights">
+    <nav class="main-nav">
+        <div class="nav-wrapper">
+            <h5 class="center">{{'RESULTS.HEADER'|translate}} ({{flights.length}})</h5>
+            <a ui-sref="index" class="nav-btn">
+                <i class="material-icons">keyboard_arrow_left</i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container content" ng-if="flights">
+        <div class="card search-params-card">
+            <div class="row">
+                <div class="col s5 destination">
+                    {{searchOptions.departureCity}}
+                    <i class="flight-type-icon"
+                       ng-class="{'round-trip': searchOptions.comebackDate, 'one-way': !searchOptions.comebackDate}"></i>
+                    {{searchOptions.arrivalCity}}
+                </div>
+                <div class="col s7 dates">
+                    <span class="from">{{searchOptions.departureDate}}</span>
+                    <span ng-if="searchOptions.comebackDate" class="to">{{' - ' + searchOptions.comebackDate}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card flight-card" bindonce
+             ng-repeat="flight in flights | filter:filterFlights | orderBy:sortProperty | limitTo:flightsPerPage">
+            <flight-row sector="flight.forwardSector" segments="flight.forwardSegments"></flight-row>
+            <flight-row sector="flight.comebackSector" segments="flight.comebackSegments"
+                        ng-if="flight.comebackSector.arrivalCity"></flight-row>
+
+            <div class="row price-row">
+                <div class="col s6">
+                    <p>{{'RESULTS.FEE'|translate}}</p>
+                </div>
+                <div class="col s6 text-right">
+                    <span class="price">
+                      <small>€</small>
+                      <span bo-bind="flight.priceRound"></span>
+                      <sup bo-bind="flight.priceCents"></sup>
+                    </span>
+                    <!-- 8.23 modified -->
+                    <a  ng-href="/booking?wurl=/orders_flights/enter_data/{{flight.general.cachedUID}}/{{flight.general.priceKey}}">
+                                        
+                    <i class="material-icons">keyboard_arrow_right</i>
+                    </a>
+                    <!-- 8.23 modified  -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s6 offset-s3">
+                <a class="btn btn-large white blue-text btn-full"
+                   ng-if="(flights | filter:filterFlights).length > flightsPerPage"
+                   ng-click="showMore()">{{'RESULTS.HEADER'|translate}}</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="results-action-buttons" ng-if="flights">
+        <a ng-click="showSort()">{{'RESULTS.SORT.HEADER'|translate}}</a>
+        <a ng-click="showFilters('stops')">{{'RESULTS.FILTER.HEADER'|translate}} ({{(flights |
+            filter:filterFlights).length}})</a>
+    </div>
+
+    <div id="sort-modal" class="modal bottom-sheet" ng-class="{open: showSortModal}">
+        <div class="modal-content">
+            <a ng-click="sortBy('price')" class="btn btn-block" ng-class="{active: sortProperty == 'price'}">
+                <span>{{'RESULTS.SORT.CHEAPEST'|translate}}</span>
+                <span>{{(flights | orderBy:'price')[0].price | currency:'€'}}</span>
+            </a>
+            <a ng-click="sortBy('quickestIndex')" class="btn btn-block"
+               ng-class="{active: sortProperty == 'quickestIndex'}">
+                <span>{{'RESULTS.SORT.QUICKEST'|translate}}</span>
+                <span>{{(flights | orderBy:'quickestIndex')[0].price | currency:'€'}}</span>
+            </a>
+            <a ng-click="sortBy('bestIndex')" class="btn btn-block" ng-class="{active: sortProperty == 'bestIndex'}">
+                <span>{{'RESULTS.SORT.BEST'|translate}}</span>
+                <span>{{(flights | orderBy:'bestIndex')[0].price | currency:'€'}}</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="filters-modal" class="modal top-sheet" ng-class="{open: showFiltersModal}">
+        <div class="modal-header card">
+            <a class="modal-aciton modal-close" ng-click="hideFilters()">
+                <i class="material-icons">close</i>
+            </a>
+            <h4>{{'RESULTS.FILTER.FILTER_MODAL.HEADER'|translate}}</h4>
+        </div>
+        <div class="card tabs-card">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s2">
+                            <a ng-click="showFilters('stops')"
+                               ng-class="{active: filtersTab == 'stops'}"><img src="../images/filters/stops.png" alt="stops"></a>
+                        </li>
+                        <li class="tab col s2">
+                            <a ng-click="showFilters('time')"
+                               ng-class="{active: filtersTab == 'time'}"><img src="../images/filters/time.png" alt="times"></a>
+                        </li>
+                        <li class="tab col s2">
+                            <a ng-click="showFilters('airports')"
+                               ng-class="{active: filtersTab == 'airports'}"><img src="../images/filters/airport.png" alt="airports"></a>
+                        </li>
+                        <li class="tab col s2">
+                            <a ng-click="showFilters('airlines')"
+                               ng-class="{active: filtersTab == 'airlines'}"><img src="../images/filters/airlines.png" alt="airlines"></a>
+                        </li>
+                        <li class="tab col s2">
+                            <a ng-click="showFilters('quality')"
+                               ng-class="{active: filtersTab == 'quality'}"><img src="../images/filters/quality.png" alt="quality"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <filters show='filtersTab' flights='flights' on-save='applyFilters(filtersData)'></filters>
+    </div>
+</div>

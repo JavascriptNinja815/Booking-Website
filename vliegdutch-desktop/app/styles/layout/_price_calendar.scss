@@ -1,0 +1,224 @@
+@import "../tool/variables";
+@import "../tool/mixins";
+
+#price-calendar {
+  .panel-default {
+    border: none;
+    overflow-x: visible;
+    @include shadow(1px 1px 5px 1px rgba(0, 0, 0, 0.16));
+  }
+
+  .navigation-crumbs {
+    padding: 20px 0;
+    font-weight: lighter;
+    list-style: none;
+    & > .visited {
+      display: inline-block;
+      & > a {
+        font-size: 16px;
+      }
+      &:after {
+        display: inline-block;
+        margin: 0 20px;
+        font-size: 16px;
+        color: $blue;
+        content: ">";
+      }
+    }
+    & > .current {
+      display: inline-block;
+      font-size: 25px;
+      color: $blue;
+    }
+  }
+
+  .filter-block {
+    display: block;
+    padding: 10px;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+
+    .body {
+      padding: 12px 5px 10px 5px;
+    }
+  }
+
+  #flight-selection {
+    float: left;
+    margin: 10px;
+    border: solid #EAEAEA 1px;
+    border-radius: 2px;
+
+    .autocomplete-container {
+      float: left;
+      width: 100%;
+
+      .autocomplete-search-results {
+        margin-top: -2px;
+      }
+    }
+
+    input {
+      width: 100%;
+      border-radius: 0;
+      border: solid #DADADA 1px;
+    }
+
+    .flight-from input {
+      border-bottom: none;
+    }
+
+    .flight-to input {
+      border-top-style: dashed;
+    }
+
+    & > .flip-destinations {
+      position: absolute;
+      z-index: 99;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      float: right;
+      right: 24px;
+      width: 40px;
+      height: 90px;
+      text-align: center;
+
+      i {
+        border: solid #D2CCCC 1px;
+        border-radius: 15px;
+        padding: 2px;
+        font-size: 19px;
+        color: #000;
+        background-color: #FFF;
+      }
+    }
+  }
+
+  .flight-type-filters {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+
+    ul.nav-tabs {
+      border: none;
+
+      li {
+        width: 50%;
+        text-align: center;
+        cursor: pointer;
+
+        a {
+          border: none;
+        }
+        &.active a {
+          border-bottom: solid $blue 3px;
+        }
+        a:hover, & > a:focus {
+          background-color: transparent !important;
+          outline: none !important;
+        }
+      }
+    }
+
+    .filter {
+      width: 100%;
+      padding: 30px 0 10px 0;
+
+      h5 {
+        font-weight: bold;
+        margin: 0;
+      }
+
+      p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 20px;
+        color: $grey;
+      }
+
+      .slider-wrapper {
+        padding: 5px 15px;
+      }
+    }
+
+  }
+
+  table.flights-list {
+    td {
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    td.destination {
+      text-align: left;
+      font-weight: lighter;
+      font-size: 15px;
+
+      .flight-type-icon {
+        display: inline-block;
+        font-size: 14px;
+        text-align: center;
+        margin: 0 5px;
+        width: 18px;
+        height: 16px;
+        &.one-way {
+          background: url("../../images/mode/one-way.png") center center no-repeat;
+          background-size: contain;
+        }
+        &.round-trip {
+          background: url("../../images/mode/round-trip.png") center center no-repeat;
+          background-size: contain;
+        }
+      }
+    }
+
+    td.carriers {
+      position: relative;
+      width: 100px;
+      img {
+        max-height: 75px;
+        position: absolute;
+        left: 0;
+        top: -13px;
+      }
+
+      .multi {
+        background-color: #99CC00;
+        padding: 5px 10px;
+        border-radius: 2px;
+        color: #FFF;
+        font-size: 11px;
+      }
+    }
+
+    td.stopovers {
+      color: #99CC00;
+    }
+    td.oneStop {
+      color: #ff8400;
+    }
+    td.moreStops {
+      color: $red;
+    }
+
+    td.duration {
+      color: $grey;
+    }
+
+    td.price {
+      color: $red;
+      font-size: 20px;
+      i {
+        margin-top: 4px;
+      }
+    }
+  }
+  .fares-notice {
+    font-size: 16px;
+  }
+}

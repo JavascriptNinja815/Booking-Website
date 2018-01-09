@@ -1,0 +1,494 @@
+.booking-page {
+  .card {
+    font-size: 12px;
+    margin: 1rem;
+
+    .header {
+      padding: 1rem;
+      background: #e0e0e0;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+
+  [type="checkbox"].filled-in:checked + label:after {
+    background-color: #2196F3;
+    border-color: #2196F3;
+  }
+
+  .progress-card {
+    a {
+      text-align: center;
+      padding: 1rem 0;
+      font-weight: lighter;
+      font-size: 12px;
+      color: #959595;
+
+      &.passed {
+        background: #64b5f6;
+        color: #FFF;
+      }
+
+      &.active {
+        background: #1e88e5;
+        color: #FFF;
+      }
+
+      & > i {
+        margin-right: 0.5rem;
+        font-style: normal;
+        border: solid 1px;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        border-radius: 15px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+#passenger-data-page {
+  .card:last-child {
+    margin-bottom: 100px;
+  }
+
+  .info-card {
+    padding: 1rem;
+
+    h4, h5 {
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    h4 {
+      font-size: 14px;
+    }
+
+    h5 {
+      font-size: 12px;
+    }
+
+    p {
+      color: #959595;
+    }
+
+    .alert-icon {
+      font-size: 18px;
+      float: left;
+      margin-right: 5px;
+      margin-top: -3px;
+      color: #ff5722;;
+    }
+
+    li {
+      font-size: 11px;
+      clear: both;
+
+      &:last-child {
+        padding-bottom: 1rem;
+      }
+
+      span {
+        float: left;
+      }
+
+      > .checkmark {
+        float: left;
+        font-size: 16px;
+        margin-right: 5px;
+        font-weight: bold;
+
+        &.positive {
+          color: #66bb6a;
+        }
+
+        &.negative {
+          color: #ff0000;
+        }
+      }
+
+      > a.info {
+        display: inline-block;
+
+        i {
+          font-size: 14px;
+          color: #039be5;
+          float: left;
+          margin: 1px 0 0 5px;
+        }
+      }
+    }
+  }
+
+  .form-card {
+    .header {
+      label {
+        color: black;
+      }
+    }
+
+    .card-content {
+      padding-top: 0;
+    }
+
+    .row .col {
+      padding: 0;
+    }
+
+    h5 {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin: 20px 0 0 0;
+    }
+
+    p {
+      color: #959595;
+
+      .important {
+        color: #ff5722;
+      }
+    }
+
+    .input-field {
+      input[type="text"] {
+        margin: 0;
+        padding: 0 10px;
+        box-sizing: border-box;
+      }
+
+      label {
+        padding: 0 10px;
+      }
+
+      .dropdown-content li > a,
+      .dropdown-content li > span {
+        color: #000;
+      }
+    }
+
+    .phone-field {
+      .cc-select a {
+        position: absolute;
+        margin: 10px 0 0 5px;
+        color: #000;
+
+        img {
+          height: 20px;
+        }
+
+        .caret {
+          font-size: 9px;
+          float: right;
+          margin: 6px 0 0 3px;
+        }
+      }
+
+      input {
+        padding-left: 60px !important;
+      }
+      label {
+        padding-left: 45px !important;
+      }
+    }
+  }
+
+  .summary-card {
+    padding-bottom: 0.5rem;
+
+    .card-content {
+      padding: 0.5rem;
+
+      .row {
+        margin-bottom: 10px;
+
+        .title {
+          span {
+            float: left;
+            clear: both;
+
+            &:first-child {
+              font-size: 15px;
+            }
+
+            & + span {
+              font-size: 11px;
+            }
+          }
+        }
+
+        .price {
+          text-align: right;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  .baggage-card {
+    .card-content {
+      padding: 1rem 0;
+
+      & .row {
+        margin: 0;
+      }
+
+      h5 {
+        font-size: 15px;
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      p {
+        color: #959595;
+      }
+
+      .btn {
+        height: 45px;
+        line-height: 45px;
+      }
+
+      .selected-baggage {
+        margin-top: 3px;
+        background-color: #f0f0f0;
+        line-height: 40px;
+
+        &:first-child {
+          margin-top: 10px;
+        }
+
+        .weight-and-amount {
+          letter-spacing: 1px;
+          text-align: right;
+        }
+
+        i.airplane {
+          float: left;
+          margin: 10px 10px 0 0;
+          font-size: 18px;
+          color: #9e9e9e;
+        }
+      }
+    }
+  }
+
+  .tac-card {
+    label {
+      color: black;
+      line-height: 18px;
+      font-size: 13px;
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .book-btn {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-radius: 0;
+    background-color: #ff5722;
+    z-index: 100;
+  }
+
+  .baggage-select-modal {
+    height: 100%;
+    background-color: #F1F9FF !important;
+
+    .card.passenger-baggage {
+      margin: 1rem;
+      padding: 0.5rem;
+
+      h5 {
+        text-transform: uppercase;
+        font-size: 12px;
+        margin-bottom: 2rem;
+      }
+
+      h4 {
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 19px;
+
+        & > i {
+          float: left;
+          font-size: 18px;
+          margin-right: 10px;
+          color: #bdbdbd;
+        }
+      }
+
+      .dropdown-content li > a,
+      .dropdown-content li > span,
+      .select-wrapper input.select-dropdown {
+        font-size: 12px;
+        color: #000;
+      }
+    }
+
+    .continue-btn {
+      width: auto;
+      margin: 1rem;
+    }
+  }
+
+  #cancelation-policy,
+  #country-code-modal {
+    height: 100%;
+    background-color: #F1F9FF !important;
+
+    .card:not(.modal-header) {
+      padding: 1rem;
+      max-height: 75%;
+      overflow-y: auto;
+    }
+  }
+
+  #country-code-modal {
+    ul li {
+      padding: 0.5rem 1rem;
+      img {
+        float: left;
+        height: 20px;
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+
+#payment-page {
+  .passenger-info-card {
+    .card-content {
+      .label {
+        display: inline-block;
+        width: 100%;
+        color: #bdbdbd;
+        font-size: 13px;
+
+        &:not(:first-child) {
+          margin-top: 1rem;
+        }
+      }
+
+      .value {
+        display: inline-block;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .payment-method-card {
+    .card-content {
+      padding: 0;
+
+      ul.tabs {
+        margin-top: 0.5rem;
+        font-size: 11px;
+        font-weight: bold;
+        height: 36px;
+        border-bottom: solid #DDD 1px;
+
+        .tab {
+          padding: 0;
+          height: 36px;
+          line-height: 36px;
+          min-width: 45px;
+
+          a {
+            color: #000;
+          }
+        }
+
+        .indicator {
+          background-color: #0089ec;
+        }
+      }
+
+      .tab-content {
+        padding: 1.5rem 1rem 1rem;
+
+        .input-field {
+          label {
+            position: relative;
+            top: 0;
+            left: 0;
+            color: #000;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: initial;
+
+            &.active {
+              display: initial;
+              font-size: 1rem;
+            }
+          }
+
+          input[type="text"] {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 0 0.5rem;
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      #credit-card {
+        .expire-date-fields {
+          label {
+            display: inline-block;
+            width: 100%;
+          }
+
+          input {
+            width: 45%;
+            text-align: center;
+          }
+
+          .separator {
+            display: inline-block;
+            width: 5%;
+            text-align: center;
+          }
+        }
+      }
+
+      #ideal {
+        .payment-options {
+          display: inline-block;
+          width: 100%;
+
+          li {
+            float: left;
+            width: 43%;
+            margin: 3%;
+
+            img {
+              width: 100%;
+            }
+
+            &.active {
+              box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.24);
+            }
+          }
+        }
+      }
+
+      #paypal {
+        img {
+          height: 40px;
+        }
+        p {
+          margin: 1rem 0;
+        }
+      }
+    }
+
+  }
+
+}

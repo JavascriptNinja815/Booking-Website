@@ -1,0 +1,43 @@
+<div class="row flight-row">
+    <div class="col s12 carrier">
+        <img bindonce ng-repeat="segment in segments | unique:'carrier'"
+             bo-src-i="http://pics.avs.io/200/200/{{segment.carrier}}.png"/>
+    </div>
+
+    <div class="col s4 departure">
+        <span>
+            <b bo-bind="sector.departureAirport"></b>
+            <b bo-bind="sector.shortDepartureTime"></b>
+        </span>
+        <small bo-bind="sector.departureCity"></small>
+    </div>
+
+    <div class="col s4 duration" bo-if="segments.length == 1">
+        <span bo-bind="sector.duration"></span>
+        <span class="direct-flight">DIRECT</span>
+    </div>
+
+    <div class="col s4 duration" bo-if="segments.length != 1">
+        <span bo-bind="sector.duration"></span>
+        <small>
+            <span bo-bind="segments.length - 1"></span>
+            <ng-pluralize count="{{segments.length - 1}}"
+                          when="{'1': 'stop:', 'other': 'stops:'}">
+        </small>
+        <div bindonce ng-repeat="segment in segments | limitTo:segments.length - 1">
+            <small>
+                <span bo-bind="segment.layoverDuration"></span>
+                <span bo-bind="segment.arrivalCity"></span>
+            </small>
+        </div>
+    </div>
+
+    <div class="col s4 arrival">
+        <span>
+            <b bo-bind="sector.arrivalAirport"></b>
+            <b bo-bind="sector.shortArrivalTime"></b>
+            <b bo-if="sector.daysDiff != 0"> + {{sector.daysDiff}}</b>
+        </span>
+        <small bo-bind="sector.arrivalCity"></small>
+    </div>
+</div>

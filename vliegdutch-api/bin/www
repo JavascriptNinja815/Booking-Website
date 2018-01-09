@@ -1,0 +1,89 @@
+#!/usr/bin/env node
+
+const app = require('../app'),
+    http = require('http');
+
+const CONFIG = require('../app/config/').Config;
+
+const logger = require('../app/util/').Logger;
+
+
+/**
+ * @description Get port and store in Express.
+ */
+const port = _normalizePort(process.env.PORT || CONFIG.PORT);
+app.set('port', port);
+
+/**
+ * @description Get host and store in Express.
+ */
+const host = (process.env.HOST || CONFIG.HOST);
+app.set('host', host);
+
+/**
+ * @description Create HTTP server.
+ */
+const server = http.createServer(app);
+
+/**
+ * @description Listen on provided port & host.
+ */
+server.listen(port, host, function () {
+    logger.info(`Started on ${app.get('host')}:${app.get('port')}`);
+    logger.info(`Server Address: ${JSON.stringify(this.address())}`);
+});
+server.on('error', _onError);
+
+
+/**
+ * @type function
+ * @param val
+ * @returns {*}
+ * @private
+ * @description Normalize a port into a number, string, or false.
+ */
+function _normalizePort(val) {
+    const port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
+
+/**
+ * @type function
+ * @param error
+ * @private
+ * @description Event listener for HTTP server "error" event.
+ */
+function _onError(error) {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+
+    const bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
+
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            logger.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            logger.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}

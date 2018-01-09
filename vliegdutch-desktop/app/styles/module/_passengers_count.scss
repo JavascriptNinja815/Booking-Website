@@ -1,0 +1,50 @@
+@import "../tool/variables";
+/* PASSENGERS COUNT */
+
+#passengers-count-select {
+  border: none;
+  font-weight: lighter;
+
+  .close-btn {
+    float: right;
+    margin: 0 10px 10px 0;
+    background-color: $blue;
+    color: #FFF;
+  }
+
+  .amount-control {
+    padding: 6px 15px;
+
+    span.amount {
+      float: right;
+      width: 28px;
+      text-align: center;
+      padding: 3px !important;
+      color: #252525;
+    }
+
+    label {
+      font-weight: lighter;
+    }
+
+    label > span {
+      font-size: 12px;
+      line-height: 14px;
+      display: block;
+      color: #888;
+    }
+
+    .plus, .minus {
+      float: right;
+      font-size: 20px;
+      font-weight: bold;
+      color: $blue;
+      cursor: pointer;
+
+      &.disabled {
+        color: #eee;
+        cursor: default;
+      }
+    }
+  }
+}

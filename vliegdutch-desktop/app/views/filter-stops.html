@@ -1,0 +1,33 @@
+<div class="panel panel-default border_bottom_none filters-group">
+    <div class="panel-heading">
+        <h4 class="panel-title" ng-click="collapsed = !collapsed">
+            {{ 'RESULTS.STOPS' | translate }}
+            <i class="material-icons pull-right clickable">{{headerIcon}}</i>
+        </h4>
+        <a class='reset' ng-click="reset()">({{ 'RESULTS.RESET' | translate }})</a>
+    </div>
+    <div class="panel-collapse collapse" ng-class="{in: !collapsed}">
+        <div class="panel-body">
+            <ul class="list-unstyled filter-options-list">
+                <li>
+                    <input type="checkbox" ng-model="filters.stops.direct" id="direct-filter">
+                    <label for="direct-filter"><span></span>{{ 'RESULTS.DIRECT_FLIGHT' | translate }}</label>
+                    <span class='price' ng-if="prices.direct.length">€ {{prices.direct[0]}}</span>
+                    <a class='only' ng-click="selectOnly('direct')">{{ 'RESULTS.ONLY' | translate }}</a>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="filters.stops.oneStop" id="1-stop-filter">
+                    <label for="1-stop-filter"><span></span>{{ 'RESULTS.ONE_STOP' | translate }}</label>
+                    <span class='price' ng-if="prices.oneStop.length">€ {{prices.oneStop[0]}}</span>
+                    <a class='only' ng-click="selectOnly('oneStop')">{{ 'RESULTS.ONLY' | translate }}</a>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="filters.stops.twoStops" id="2-stops-filter">
+                    <label for="2-stops-filter"><span></span>{{ 'RESULTS.TWO_STOPS' | translate }}</label>
+                    <span class='price' ng-if="prices.twoStops.length">€ {{prices.twoStops[0]}}</span>
+                    <a class='only' ng-click="selectOnly('twoStops')">{{ 'RESULTS.ONLY' | translate }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

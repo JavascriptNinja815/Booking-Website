@@ -1,0 +1,23 @@
+<!--<a href="#" class="reset-btn">RESET</a>-->
+<div class="filter-body">
+    <ul class="check-options">
+        <li>
+            <input type="checkbox" class="filled-in" ng-model="filtersData.stops.direct"/>
+            <label ng-click="toggleFilter('direct')">
+                {{'RESULTS.FILTER.FILTER_MODAL.STOPS.DIRECT_FLIGHT'|translate}}
+            </label>
+        </li>
+        <li>
+            <input type="checkbox" class="filled-in" ng-model="filtersData.stops.oneStop"/>
+            <label ng-click="toggleFilter('oneStop')">
+                {{'RESULTS.FILTER.FILTER_MODAL.STOPS.ONE_STOP'|translate}}
+            </label>
+        </li>
+        <li>
+            <input type="checkbox" class="filled-in" ng-model="filtersData.stops.twoStops"/>
+            <label ng-click="toggleFilter('twoStops')">
+                {{'RESULTS.FILTER.FILTER_MODAL.STOPS.TWO_STOPS'|translate}}
+            </label>
+        </li>
+    </ul>
+</div>

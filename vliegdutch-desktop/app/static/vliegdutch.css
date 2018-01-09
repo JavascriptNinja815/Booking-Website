@@ -1,0 +1,536 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: lighter;
+}
+
+body > #container > .container {
+    width: 85%;
+}
+
+.form-control {
+    background: #fff none;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555555;
+    display: block;
+    font-size: 14px;
+    height: 40px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+
+strong {
+    font-weight: 500;
+}
+
+select {
+    /* styling */
+    background-color: white;
+    border: thin solid blue;
+    border-radius: 4px;
+    display: inline-block;
+    font: inherit;
+    line-height: 1.5em;
+    padding: 0.5em 3.5em 0.5em 1em;
+    /* reset */
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 40px !important;
+}
+
+/*select .option{
+  color:#4f5652;
+  background:#f0f0ef;
+  white-space:nowrap;
+  -webkit-appearance:button;
+  text-overflow:ellipsis;
+  padding:5px 4px 3px 4px;
+  border-bottom:1px solid green;
+}*/
+
+/* arrows */
+select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /*,linear-gradient(to right, #ccc, #ccc);*/
+    background-size: 5px 5px,
+    5px 5px,
+    1px 1.5em;
+    background: linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%) no-repeat calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+}
+
+select::-ms-expand { /* for IE 11 */
+    display: none;
+}
+
+select.form-control:focus {
+    /*,linear-gradient(to right, #ccc, #ccc);*/
+    background-size: 5px 5px,
+    5px 5px,
+    1px 1.5em;
+    background: linear-gradient(45deg, cornflowerblue 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, cornflowerblue 50%) no-repeat calc(100% - 15px) 1em,
+    calc(100% - 20px) 1em,
+    calc(100% - 2.5em) 0.5em;
+    border-color: cornflowerblue;
+    outline: 0;
+}
+
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+select.form-control option {
+    height: 30px;
+    padding: 5px;
+}
+
+select.form-control option:hover,
+select.form-control option:focus,
+select.form-control option:active,
+select.form-control option:checked {
+    /*background-color: #218BD7;*/
+    background: linear-gradient(#218BD7, #218BD7);
+}
+
+/*#region top title */
+#reservation {
+    padding: 20px;
+}
+
+#reservation h1:first-of-type {
+    font-weight: lighter;
+    color: #218BD7;
+    font-size: 27px;
+    line-height: 20px;
+}
+
+#reservation h1:first-of-type small {
+    line-height: 30px;
+    font-weight: lighter;
+    color: #888;
+}
+
+/*#region top title */
+
+/*#region steps */
+#reservation .steps {
+    display: inline-block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#reservation .steps .step {
+    float: left;
+    width: 33%;
+    border-radius: 2px;
+    border-right: 0 none;
+    padding: 10px;
+    margin-left: -2px;
+    color: #888;
+    background-color: #F9F9FA;
+}
+
+#reservation .steps .step h4 {
+    margin: 5px;
+    font-size: 14px;
+}
+
+#reservation .steps .step.completed h4,
+#reservation .steps .step.completed h4 a,
+#reservation .steps .step.active h4 {
+    color: white;
+}
+
+#reservation .steps .step .badge,
+#reservation .steps .step.active .badge,
+#reservation .steps .step.completed .badge {
+    background: none;
+    font-style: normal;
+    border: solid 1px;
+    width: 20px;
+    height: 20px;
+    color: #888;
+    text-align: center;
+    border-radius: 10px;
+    margin-right: 20px;
+    padding: .25em;
+}
+
+#reservation .steps .step.active .badge,
+#reservation .steps .step.completed .badge {
+    color: white !important;
+}
+
+#reservation .steps .step.completed {
+    background-color: #8CC1E7;
+    color: #FFF;
+}
+
+#reservation .steps .step.active {
+    -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    background-color: #218BD7;
+    color: #FFF;
+    padding-bottom: 13px;
+    margin-top: -2px;
+    position: relative;
+    z-index: 20;
+}
+
+/*#endregion steps */
+
+/*#region rules */
+#reservation .rules {
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#reservation .rules > h3 > span:before {
+    content: "\e101";
+    color: #ff5722;
+}
+
+#reservation .rules p {
+    font-size: 14px;
+    color: #888;
+}
+
+#reservation .rules i {
+    font-size: 17px;
+    margin-right: 5px;
+    color: #FF5722;
+}
+
+/*#endregion rules */
+
+/*#region perks */
+
+#reservation .rules > div.in.row {
+    border-top: 1px solid #e4e4e4;
+    margin-top: 20px;
+}
+
+#reservation .rules > div.in.row h4 {
+    font-size: 14px;
+}
+
+#reservation .rules > div.in.row ul {
+    border-top: none;
+}
+
+#reservation .rules > div.in.row ul li {
+    margin: 2px 0;
+    float: left;
+    clear: left;
+}
+
+#reservation .rules > div.in.row ul li a {
+    color: #218BD7;
+}
+
+#reservation .rules > div.in.row ul li span {
+    float: left;
+    font-size: 17px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+#reservation .rules > div.in.row ul.price-includes li,
+#reservation .rules > div.in.row ul.price-not-includes li {
+    color: #000;
+    margin: 5px;
+}
+
+#reservation .rules > div.in.row ul.price-includes li:first-of-type,
+#reservation .rules > div.in.row ul.price-not-includes li:first-of-type {
+    font-size: 14px;
+    text-transform: uppercase;
+    /*font-family: inherit;*/
+    margin: 10px 0;
+}
+
+#reservation .rules > div.in.row ul.price-includes li span:first-of-type:before {
+    content: "\e013";
+    color: #7FBA11;
+}
+
+#reservation .rules > div.in.row ul li.price-not-includes span:first-of-type:before {
+    content: "\e014";
+    color: #FF5722;
+}
+
+#reservation .rules > div.in.row ul.price-includes li span:not(:first-of-type),
+#reservation .rules > div.in.row ul.price-not-includes li span:not(:first-of-type) {
+    font-size: 13px;
+}
+
+#reservation .rules > h3 {
+    font-weight: 500;
+    font-size: 18px;
+    color: #000;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+/*#endregion perks */
+
+#reservation form#OrdersFlightsEnterDataForm .panel {
+    box-shadow: none;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel-default {
+    border: 0 none;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body {
+    padding: 0;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: medium none;
+    box-shadow: 0 1px 7px 1px rgba(0, 0, 0, 0.2);
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body > h3 {
+    background-color: #e2e6e8;
+    font-size: 18px;
+    font-weight: normal;
+    border-color: #ddd;
+    color: #333333;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 20px 15px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body > div.row > div:first-of-type > h4 {
+    text-transform: uppercase;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body .form-group > label:after {
+    position: absolute;
+    right: 1.2em;
+    text-align: right;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body .form-group > label[for$='OrdersFlightsPassengersCabinBaggage0Option']:before {
+    content: " Luggage";
+    position: absolute;
+    top: 10px;
+    font-family: FontAwesome, serif;
+    font-size: 20px;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body .form-group > label[for$='OrdersFlightsPassengersCabinBaggage0Option'],
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body .form-group > label[for$='OrdersFlightsPassengersCabinBaggage1Option'] {
+    margin-top: 50px;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body .form-group > label[for$='OrdersFlightsPassengersCabinBaggage1Option']:after,
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body .form-group > label[for$='OrdersFlightsPassengersBaggage1Option']:after,
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body .form-group > label[for$='OrdersFlightsPassengersCabinBaggage0Option']:after,
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body .form-group > label[for$='OrdersFlightsPassengersBaggage0Option']:after {
+    content: "";
+    font-family: FontAwesome, serif;
+    /*font-family: "Material Icons";
+    font-feature-settings: "liga";*/
+    -moz-osx-font-smoothing: grayscale;
+    color: #bdbdbd;
+    font-size: 18px;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body .form-group > label[for$='OrdersFlightsPassengersCabinBaggage1Option']:after,
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body .form-group > label[for$='OrdersFlightsPassengersBaggage1Option']:after {
+    transform: rotate(225deg);
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body .form-group > label[for$='OrdersFlightsPassengersCabinBaggage0Option']:after,
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body .form-group > label[for$='OrdersFlightsPassengersBaggage0Option']:after {
+    transform: rotate(45deg);
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel:not(:last-of-type) > .panel-body > div.row {
+    margin: 0 0 40px 0;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel:last-of-type > .panel-body > div.row {
+    margin-left: 0;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body > div.row > div:first-of-type {
+    background-color: #f9f9fa;
+    padding: 15px 20px 5px;
+    /*margin-bottom: 20px;*/
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body > div.row > div:first-of-type > p {
+    line-height: 26px;
+    color: #888;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body > div.row > div:first-of-type > p > span.text-danger {
+    color: #FF5722;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body > div.inactive > div.row {
+    padding: 0 15px;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .panel > .panel-body > div.inactive > div.row > div:first-of-type {
+    background-color: #e2e6e8;
+    /*font-size: 18px;*/
+    font-weight: normal;
+    border-color: #ddd;
+    color: #333333;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 10px 15px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+#reservation form#OrdersFlightsEnterDataForm .total-price h4 {
+    margin: 0 0 10px;
+    padding: 8px;
+}
+
+#reservation form#OrdersFlightsEnterDataForm > div.continue > .panel-body > .row > div:nth-of-type(2) {
+    padding-left: 0;
+}
+
+#reservation form#OrdersFlightsEnterDataForm > div.continue > .panel-body button[type=submit] {
+    background: #ff5722 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 6px;
+    box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    float: right;
+    font-size: 20px;
+    padding: 20px auto;
+    min-height: 70px;
+}
+
+div.checkbox > label input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    margin-top: 0;
+    margin-left: -25px;
+}
+
+input[type=checkbox]:checked,
+input[type=checkbox]::-ms-check {
+    background-color: #000 !important;
+    border-left-color: #06F !important;
+    border-right-color: #06F !important;
+}
+
+.flight-rules .panel-body {
+    padding: 15px !important;
+}
+
+div#sidebar .order-summary-mini {
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 0 transparent;
+}
+
+div#sidebar .order-summary-mini > .panel-heading {
+    background-color: #f4f6f7;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    font-weight: normal;
+    margin-top: 40px;
+    padding: 13px;
+}
+
+div#sidebar .order-summary-mini > .panel-body {
+    background-color: #fbfbfc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) inset;
+    margin-top: 2px;
+    padding: 10px;
+    font-size: 13px;
+}
+
+div#sidebar .order-summary-mini > .panel-body > p {
+    text-align: right;
+    width: 100%;
+}
+
+div#sidebar .order-summary-mini > .panel-body > p > strong {
+    float: left;
+}
+
+div#sidebar .order-summary-mini > div.panel-body.price,
+div#sidebar .order-summary-mini > div.panel-body.discount,
+div#sidebar .order-summary-mini > div.panel-body.total {
+    margin: 0;
+    box-shadow: 0 2px 0 0 #f4f6f7,
+    0 -2px 0 0 #f4f6f7,
+    2px 0 5px -1px rgba(0, 0, 0, 0.1),
+    -2px 0 5px -1px rgba(0, 0, 0, 0.1);
+    background-color: #f4f6f7;
+    font-size: 14px;
+}
+
+div#sidebar .order-summary-mini > div.panel-body.price > .small,
+div#sidebar .order-summary-mini > div.panel-body.discount > .small,
+div#sidebar .order-summary-mini > div.panel-body.total > .small {
+    font-size: 85%;
+}
+
+div#sidebar .order-summary-mini > div.panel-body.price > .row .text-right:not(.text-danger),
+div#sidebar .order-summary-mini > div.panel-body.discount > .row .text-right:not(.text-danger),
+div#sidebar .order-summary-mini > div.panel-body.total > .row .text-right:not(.text-danger) {
+    /*height: 55px;*/
+    vertical-align: middle;
+    font-size: 20px;
+    padding: 5px 15px;
+}
+
+div#sidebar .order-summary-mini > div.panel-body.price > .row strong {
+    font-weight: lighter;
+}
+
+/*div#sidebar div.order-summary-mini div:first-of-type.price,*/
+div#sidebar div.order-summary-mini div:nth-of-type(5) {
+    margin-top: 20px !important;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+div#sidebar div.order-summary-mini > div:last-of-type {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+div#sidebar div.order-summary-mini > div:last-of-type > .row .text-danger {
+    text-align: center;
+}
+
+div#sidebar .order-summary-mini > div.panel-body.total {
+    background-color: #ff9a7a;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 17px;
+    padding: 20px 15px;
+}
+
+div#sidebar .order-summary-mini > div.panel-body.total .text-danger {
+    color: #fff;
+}
+

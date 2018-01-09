@@ -1,0 +1,13 @@
+<div class="card filter-card">
+    <filter-stops-tab filters-data="filtersData" ng-hide="show != 'stops'" class="filter-tab"></filter-stops-tab>
+    <filter-time-tab filters-data="filtersData" flights="flights" ng-hide="show != 'time'"
+                     class="filter-tab"></filter-time-tab>
+    <filter-airports-tab filters-data="filtersData" flights="flights" ng-hide="show != 'airports'"
+                         class="filter-tab"></filter-airports-tab>
+    <filter-airlines-tab filters-data="filtersData" flights="flights" ng-hide="show != 'airlines'"
+                         class="filter-tab"></filter-airlines-tab>
+    <filter-quality-tab filters-data="filtersData" ng-hide="show != 'quality'" class="filter-tab"></filter-quality-tab>
+    <a class="btn btn-block btn-primary save-btn blue" ng-click="onSave({filtersData: filtersData})">
+        {{'RESULTS.FILTER.FILTER_MODAL.SAVE_FILTER'|translate}}
+    </a>
+</div>

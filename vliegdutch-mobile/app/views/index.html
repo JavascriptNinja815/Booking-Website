@@ -1,0 +1,306 @@
+<nav class="main-nav">
+    <div class="nav-wrapper">
+        <a ui-sref="index" class="brand-logo center">
+            <img src="../images/logo/logo.png" alt="VliegDutch"/>
+        </a>
+        <a class="nav-btn" ng-click="openModals()">
+            <i class="material-icons">menu</i>
+        </a>
+    </div>
+</nav>
+
+<div class="container content" id="index-page">
+    <div class="card search-card">
+        <h5>{{'SEARCH.HEADER'|translate}}</h5>
+
+        <ul id="mode-selector">
+            <li ng-class="{active: (mode == 'roundtrip')}" ng-click="mode = 'roundtrip'">
+                <i class="material-icons tiny">cached</i>{{'SEARCH.ROUND_TRIP'|translate}}
+            </li>
+            <li ng-class="{active: (mode == 'one-way')}" ng-click="mode = 'one-way'">
+                <i class="material-icons tiny">redo</i>{{'SEARCH.ONE_WAY'|translate}}
+            </li>
+        </ul>
+
+        <div class="row">
+            <form class="col s12">
+                <div class="input-field col s12" ng-click="showLocationSelect('departure')">
+                    <i class="material-icons prefix">place</i>
+                    <span class="pretend-input" ng-class="{empty: !departureLocation}">
+                        {{departureLocation ? departureLocation.value : searchPlaceholderText('FROM')}}
+                    </span>
+                </div>
+                <div class="input-field col s12" ng-click="showLocationSelect('arrival')">
+                    <i class="material-icons prefix">place</i>
+                    <span class="pretend-input" ng-class="{empty: !arrivalLocation}">
+                        {{arrivalLocation ? arrivalLocation.value : searchPlaceholderText('TO')}}
+                    </span>
+                </div>
+                <div class="input-field col s6" ng-click="showCalendar('departure')">
+                    <i class="material-icons prefix">date_range</i>
+                    <span class="pretend-input" ng-class="{empty: !departureDate}">
+                        {{departureDate.format('DD MMM') || searchPlaceholderText('DEPART')}}
+                    </span>
+                </div>
+                <div class="input-field col s6" ng-click="showCalendar('comeback')">
+                    <i class="material-icons prefix">date_range</i>
+                    <span class="pretend-input" ng-class="{empty: !comebackDate, disabled: mode == 'one-way'}">
+                        {{comebackDate.format('DD MMM') || searchPlaceholderText('RETURN')}}
+                    </span>
+                </div>
+                <div class="input-field col s12" id="passengers-field">
+                    <div class="select-wrapper" ng-click="showPassengersModal = true">
+                        <span class="caret">▼</span>
+                        <span type="text" class="select-dropdown" readonly="true">{{passengersSummary()}}</span>
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <button class="btn btn-block btn-primary waves-effect waves-light"
+                            type="submit"
+                            name="action"
+                            ng-click="doSearch()">
+                        {{'SEARCH.SEARCH'|translate}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="destination-select-modal" class="modal top-sheet" ng-class="{open: showLocationModal}">
+        <div class="modal-header card">
+            <a class="modal-aciton modal-close" ng-click="showLocationModal = false">
+                <i class="material-icons">close</i>
+            </a>
+            <h4>{{'SEARCH.FROM_TO_MODAL.HEADER'|translate}}</h4>
+        </div>
+
+        <div class="card destination-search">
+            <a class="type-selector"
+               ng-class="{active: (locationTab == 'departure')}"
+               ng-click="showLocationSelect('departure')">{{'SEARCH.FROM_TO_MODAL.FROM'|translate}}</a>
+            <a class="type-selector"
+               ng-class="{active: (locationTab == 'arrival')}"
+               ng-click="showLocationSelect('arrival')">{{'SEARCH.FROM_TO_MODAL.TO'|translate}}</a>
+            <div class="input-field input-search">
+                <input type="text" ng-model="locationQuery" focus-on="focusToLocationInput"
+                       placeholder="{{locationSelectInputText()}}">
+            </div>
+            <div class="results">
+                <div class="result-line"
+                     ng-if="locationQuery && locationQuery.length >= 3"
+                     ng-repeat="location in locationsResults"
+                     ng-click="setLocation(location)">
+                    <img ng-src="/images/flags/{{location.countryName}}.png">
+                    <span>{{location.value}}</span>
+                </div>
+
+                <div class="result-line"
+                     ng-if="showProposedDestinations()"
+                     ng-repeat="location in commonDepartureDestinations"
+                     ng-click="setLocation(location)">
+                    <img ng-src="/images/flags/{{location.countryName}}.png">
+                    <span>{{location.value}}</span>
+                </div>
+
+                <div class="popular" ng-if="showPopularDestinations()">
+                    <h5>{{'SEARCH.FROM_TO_MODAL.POPULAR_DESTINATIONS'|translate}}</h5>
+                    <div class="loader" ng-if="loadingPopularDestinations"></div>
+                    <div class="row">
+                        <div class="s12 m6 col popular-destinations-line"
+                             ng-if="!loadingPopularDestinations"
+                             ng-repeat="destination in popularDestinations"
+                             ng-click="setPopularArrival(destination)">
+                            <div>
+                                <img ng-src="{{destination.cityImage}}"/>
+                                <h3>
+                                    <span>{{destination.cityName}}, {{destination.countryName}}</span>
+                                    <span>€{{destination.price}}</span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="date-select-modal" class="modal top-sheet" ng-class="{open: showCalendarModal}">
+        <div class="modal-header card">
+            <a href="#" class="modal-aciton modal-close" ng-click="showCalendarModal = false">
+                <i class="material-icons">close</i>
+            </a>
+            <h4>{{'SEARCH.DEPART_RETURN_MODAL.HEADER'|translate}}</h4>
+        </div>
+
+        <div class="card calendar-wrapper" focus-on="focusToCalendar">
+            <a class="type-selector"
+               ng-class="{active: calendarTab == 'departure'}"
+               ng-click="showCalendar('departure')">
+                {{'SEARCH.DEPART_RETURN_MODAL.DEPARTURE'|translate}}
+            </a>
+            <a class="type-selector"
+               ng-class="{active: calendarTab == 'comeback'}"
+               ng-click="showCalendar('comeback')">
+                {{'SEARCH.DEPART_RETURN_MODAL.RETURN'|translate}}
+            </a>
+            <div class="week-days">
+                <span>M</span>
+                <span>T</span>
+                <span>W</span>
+                <span>T</span>
+                <span>F</span>
+                <span>S</span>
+                <span>S</span>
+            </div>
+            <div class="calendar">
+                <div class="month" ng-repeat="month in calendar">
+                    <h5>{{month[0].day.format('MMMM')}}</h5>
+                    <div class="days">
+            <span
+                    ng-style="calendarDayStyle(day.day)"
+                    ng-repeat="day in month"
+                    ng-class="{active: isSelectedDate(day.day), disabled: isDisabledDate(day.day), selected: isReverseSelectedDate(day.day), inrange: isInRange(day.day)}"
+                    ng-click="setDate(day.day)">
+              <span class="day">{{day.day.format('DD')}}</span>
+              <span class="price" ng-if="day.price">€{{day.price}}</span>
+            </span>
+                    </div>
+                </div>
+            </div>
+            <div class="calendar" data-type="return"></div>
+        </div>
+    </div>
+
+    <div id="passengers-select-modal" class="modal top-sheet" ng-class="{open: showPassengersModal}">
+        <div class="modal-header card">
+            <a href="#" class="modal-aciton modal-close" ng-click="showPassengersModal = false">
+                <i class="material-icons">close</i>
+            </a>
+            <h4>{{'SEARCH.PASSENGERS_MODAL.HEADER'|translate}}</h4>
+        </div>
+
+        <div class="card passengers-select">
+            <h5>{{'SEARCH.PASSENGERS_MODAL.ADULTS'|translate}}
+                <small>12+ {{'SEARCH.PASSENGERS_MODAL.YR'|translate}}</small>
+            </h5>
+            <ul>
+                <li ng-repeat="n in [1,2,3,4,5,6]"
+                    ng-class="{active: adults == n}"
+                    ng-click="updatePassengers('adults', n)">{{n}}
+                </li>
+            </ul>
+            <h5>{{'SEARCH.PASSENGERS_MODAL.CHILDREN'|translate}}
+                <small>2-12 {{'SEARCH.PASSENGERS_MODAL.YR'|translate}}</small>
+            </h5>
+            <ul>
+                <li ng-repeat="n in [0,1,2,3,4,5]"
+                    ng-class="{active: children == n}"
+                    ng-click="updatePassengers('children', n)">{{n}}
+                </li>
+            </ul>
+            <h5>{{'SEARCH.PASSENGERS_MODAL.BABIES'|translate}}
+                <small>&#060;2 {{'SEARCH.PASSENGERS_MODAL.YR'|translate}}</small>
+            </h5>
+            <ul>
+                <li ng-repeat="n in [0,1,2,3,4,5]"
+                    ng-class="{active: infants == n}"
+                    ng-click="updatePassengers('infants', n)">{{n}}
+                </li>
+            </ul>
+            <button class="btn btn-block btn-primary save-btn blue" ng-click="showPassengersModal = false">
+                {{'SEARCH.PASSENGERS_MODAL.DONE'|translate}}
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div id="nav-modal" class="modal top-sheet" ng-class="{open: showNavigationModal}">
+    <div class="modal-header card">
+        <a href="#" class="modal-action modal-close" ng-click="closeModals()">
+            <i class="material-icons">close</i>
+        </a>
+        <h4>{{'MENU.HEADER'|translate}}</h4>
+    </div>
+    <div class="modal-content card">
+        <a href="#" class="btn btn-block btn-primary waves-effect waves-light search-flights-btn"
+           ng-click="closeModals()">
+            <i class="large material-icons rotate90">airplanemode_active</i>
+            {{'MENU.SEARCH_FLIGHTS'|translate}}
+        </a>
+        <a href="#" ng-click="toModal(2)"
+           class="btn btn-block btn-primary waves-effect waves-light">
+            {{'MENU.E_TICKET'|translate}}
+        </a>
+        <div class="row bottom-elements">
+            <div class="col s4 language-selectors">
+                <a class="btn btn-round"
+                   ng-class="{active: (language === 'nl')}" ng-click="changeLanguage('nl')">NL</a>
+                <a class="btn btn-round"
+                   ng-class="{active: (language === 'en')}" ng-click="changeLanguage('en')">EN</a>
+            </div>
+            <div class="col s8 contact-info">
+                <h5>
+                    <i class="material-icons">smartphone</i>
+                    0900 2365254
+                </h5>
+                <small>{{'MENU.MONDAY'|translate}} - {{'MENU.FRIDAY'|translate}} 08:00 - 18:00</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="order-management-modal" class="modal top-sheet" ng-class="{open: showManagementModal}">
+    <div class="modal-header card">
+        <a href="#" class="modal-action modal-close" ng-click="closeModals()">
+            <i class="material-icons">close</i>
+        </a>
+        <h4>{{'MENU.MANAGE_BOOKING.HEADER'|translate}}</h4>
+    </div>
+    <div class="modal-content card">
+
+        <p>{{'MENU.MANAGE_BOOKING.TEXT'|translate}}</p>
+        <div class="row bottom-elements">
+            <form id="modal-booking">
+                <div class="form-group">
+                    <label for="confirmation-number">
+                        <p class="confirmation-title">{{'MENU.MANAGE_BOOKING.CONFIRM'|translate}}</p>
+                    </label>
+                    <input type="email" class="form-control" id="confirmation-number" placeholder="F2XXXXXX">
+                    <p><a class="forgot-number" ng-click="toModal(3)">{{'MENU.MANAGE_BOOKING.FORGOT'|translate}}</a></p>
+                </div>
+            </form>
+            <button class="btn btn-primary waves-effect waves-light" ng-click="toModal(1)">
+                {{'MENU.MANAGE_BOOKING.BACK'|translate}}
+            </button>
+            <button type="button" class="btn btn-primary waves-effect waves-light" ng-click="doSubmit()">
+                {{'MENU.MANAGE_BOOKING.SUBMIT'|translate}}
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="forgot-booking-number-modal" class="modal top-sheet" ng-class="{open: forgotBookingModal}">
+    <div class="modal-header card">
+        <a href="#" class="modal-action modal-close" ng-click="closeModals()">
+            <i class="material-icons">close</i>
+        </a>
+        <h4>{{'MENU.MANAGE_BOOKING.HEADER'|translate}}</h4>
+    </div>
+    <div class="modal-content card">
+
+        <div class="row bottom-elements">
+            <p>{{'MENU.MANAGE_BOOKING.FORGOT_MODAL.TEXT_HEADER'|translate}}</p>
+            <ul>
+                <li>{{'MENU.MANAGE_BOOKING.FORGOT_MODAL.TEXT_BODY_1'|translate}}</li>
+                <li>{{'MENU.MANAGE_BOOKING.FORGOT_MODAL.TEXT_BODY_2'|translate}}</li>
+            </ul>
+            <p>{{'MENU.MANAGE_BOOKING.FORGOT_MODAL.TEXT_FOOTER'|translate}} <br> 0900 2365254.</p>
+            <button class="btn btn-primary waves-effect waves-light"
+                    ng-click="toModal(2)">{{'MENU.MANAGE_BOOKING.FORGOT_MODAL.BACK'|translate}}
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+@import "../tool/mixins";
+
+/* === FONTS === */
+
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@include font-face('Roboto', '../fonts/Roboto/Roboto-Light', 300, null, ttf);
+@include font-face('Roboto', '../fonts/Roboto/Roboto-Regular', normal, null, ttf);
+@include font-face('Roboto', '../fonts/Roboto/Roboto-Bold', bold, null, ttf);
+
+@include font-face('Material Icons', '../fonts/MaterialIcons/MaterialIcons-Regular', normal, null, ttf);
+
+.material-icons {
+  font-family: 'Material Icons', serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+
+  &.tiny {
+    font-size: 18px;
+  }
+  &.normal {
+    font-size: 24px;
+  }
+  &.big {
+    font-size: 36px;
+  }
+  &.huge {
+    font-size: 48px;
+  }
+}

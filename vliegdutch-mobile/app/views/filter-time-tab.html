@@ -1,0 +1,90 @@
+<!--<a href="#" class="reset-btn">RESET</a>-->
+<div class="filter-body">
+    <div class="time-filter" id="filter-flight-duration">
+        <h5>{{'RESULTS.FILTER.FILTER_MODAL.TIME.FLIGHT_DURATION'|translate}}</h5>
+        <p>
+            <strong>{{formattedDuration('min')}}</strong>
+            to
+            <strong>{{formattedDuration('max')}}</strong>
+        </p>
+
+        <rzslider
+                rz-slider-model="durationFilter.min"
+                rz-slider-high="durationFilter.max"
+                rz-slider-options="durationFilter.options"
+                rz-slider-on-end="updateFiltersData"></rzslider>
+    </div>
+
+    <ul class="tabs">
+        <li class="tab col s3">
+            <a ng-class="{active: timeTab == 'take-off'}" ng-click="showTab('take-off')">
+                {{'RESULTS.FILTER.FILTER_MODAL.TIME.TAKE_OFF'|translate}}
+            </a>
+        </li>
+        <li class="tab col s3">
+            <a ng-class="{active: timeTab == 'landing'}" ng-click="showTab('landing')">
+                {{'RESULTS.FILTER.FILTER_MODAL.TIME.LANDING'|translate}}
+            </a>
+        </li>
+    </ul>
+
+    <div class="col s12" ng-show="timeTab == 'take-off'">
+        <div class="time-filter">
+            <h5>{{takeOffCityForward | uppercase}}</h5>
+            <p>
+                <strong>{{formattedTimeFrom('takeOffForward')}}</strong>
+                to
+                <strong>{{formattedTimeTo('takeOffForward')}}</strong>
+            </p>
+
+            <rzslider
+                    rz-slider-model="takeOffForwardFilter.min"
+                    rz-slider-high="takeOffForwardFilter.max"
+                    rz-slider-options="takeOffForwardFilter.options"></rzslider>
+        </div>
+
+        <div class="time-filter" ng-show="takeOffCityComeback">
+            <h5>{{takeOffCityComeback | uppercase}}</h5>
+            <p>
+                <strong>{{formattedTimeFrom('takeOffComeback')}}</strong>
+                to
+                <strong>{{formattedTimeTo('takeOffComeback')}}</strong>
+            </p>
+
+            <rzslider
+                    rz-slider-model="takeOffComebackFilter.min"
+                    rz-slider-high="takeOffComebackFilter.max"
+                    rz-slider-options="takeOffComebackFilter.options"></rzslider>
+        </div>
+    </div>
+
+    <div class="col s12" ng-show="timeTab == 'landing'">
+        <div class="time-filter">
+            <h5>{{landingCityForward | uppercase}}</h5>
+            <p>
+                <strong>{{formattedTimeFrom('landingForward')}}</strong>
+                to
+                <strong>{{formattedTimeTo('landingForward')}}</strong>
+            </p>
+
+            <rzslider
+                    rz-slider-model="landingForwardFilter.min"
+                    rz-slider-high="landingForwardFilter.max"
+                    rz-slider-options="landingForwardFilter.options"></rzslider>
+        </div>
+
+        <div class="time-filter" ng-if="landingCityComeback">
+            <h5>{{landingCityComeback | uppercase}}</h5>
+            <p>
+                <strong>{{formattedTimeFrom('landingComeback')}}</strong>
+                to
+                <strong>{{formattedTimeTo('landingComeback')}}</strong>
+            </p>
+
+            <rzslider
+                    rz-slider-model="landingComebackFilter.min"
+                    rz-slider-high="landingComebackFilter.max"
+                    rz-slider-options="landingComebackFilter.options"></rzslider>
+        </div>
+    </div>
+</div>

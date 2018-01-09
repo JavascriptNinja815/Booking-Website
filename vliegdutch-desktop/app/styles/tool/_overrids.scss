@@ -1,0 +1,63 @@
+@import "variables";
+@import "mixins";
+@import "../base/fonts";
+
+/*=== Cursor ===*/
+.bold {
+  font-weight: bold;
+}
+
+.help {
+  cursor: help;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+/*=== Display ===*/
+.visible {
+  display: block !important;
+}
+
+/*=== Input ===*/
+.form-group {
+  input[type="radio"] + label,
+  input[type="checkbox"] + label {
+    margin-right: 15px;
+  }
+}
+
+//.focus_placeholder{
+//  @include placeholder{
+//    opacity: 0.2!important;
+//  }
+//}
+
+/*=== Margin ===*/
+.margin_r_none {
+  margin-right: 0 !important;
+}
+
+.no_margin {
+  margin: 0 !important;
+}
+
+.margin_bottom_20 {
+  margin-bottom: 20px !important;
+}
+
+/*=== Border ===*/
+.border_bottom_none {
+  border-bottom: none !important;
+}
+
+/*=== Position ===*/
+.position_relative {
+  position: relative;
+}
+
+/*=== Text transform ===*/
+.text_uppercase {
+  text-transform: uppercase;
+}

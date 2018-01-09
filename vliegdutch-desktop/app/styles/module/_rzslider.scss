@@ -1,0 +1,28 @@
+@import "../tool/variables";
+
+/* RZ SLIDER */
+
+.rzslider {
+  margin: 20px 0 10px 0;
+  .rz-pointer {
+    top: -10px;
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    border: solid #cccccc 1px;
+
+    &::after {
+      display: none;
+    }
+  }
+  .rz-bar {
+    background-color: #ccc;
+  }
+  .rz-bar.rz-selection {
+    background-color: $blue
+  }
+
+  .rz-bubble {
+    display: none;
+  }
+}

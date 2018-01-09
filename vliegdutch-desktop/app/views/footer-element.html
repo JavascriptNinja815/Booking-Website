@@ -1,0 +1,93 @@
+<footer>
+    <div class="container">
+        <div class="row footer-menu">
+
+            <div class="col-xs-6 col-md-3">
+                <h5>{{ 'FOOTER.LEGAL' | translate }}</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a ui-sref="privacy-policy">{{ 'FOOTER.PRIVACY_POLICY' | translate }}</a>
+                    </li>
+                    <li>
+                        <a href="#">{{ 'FOOTER.TNC' | translate }}</a>
+                    </li>
+                    <li>
+                        <a href="#">{{ 'FOOTER.ABOUT_US' | translate }}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h5>{{ 'FOOTER.HELP' | translate }}</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#">{{ 'FOOTER.FAQ' | translate }}</a>
+                    </li>
+                    <li>
+                        <a href="#">{{ 'FOOTER.CONTACTS' | translate }}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h5>{{ 'FOOTER.MY_BOOKINGS' | translate }}</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a ng-click="showManageBookingModal = true">{{ 'FOOTER.MANAGE_BOOKING' | translate }}</a>
+                    </li>
+                    <li>
+                        <a ng-click="showManageBookingModal = true">{{ 'FOOTER.ONLINE_CHECKIN' | translate }}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h5>
+                    {{ 'FOOTER.NEVER_MISS_VOUCHER' | translate }}
+                    <br/>
+                    {{ 'FOOTER.SIGNUP_NOW' | translate }}
+                </h5>
+
+                <form id="form-subscribe" class="form-inline">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="subscribe-email"
+                                   placeholder="{{ 'FOOTER.EMAIL_PLACEHOLDER' | translate }}">
+                            <a href='#' class="input-group-addon btn-submit">
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-9">
+                <h5>{{ 'FOOTER.PAY_SECURELY_WITH' | translate }}</h5>
+                <div class="payment-methods">
+                    <img src="images/payments/Ideal.png" alt="Ideal"/>
+                    <img src="images/payments/MasterCard.png" alt="MasterCard"/>
+                    <img src="images/payments/Visa.png" alt="Visa"/>
+                    <img src="images/payments/PayPal.png" alt="PayPal"/>
+                    <img src="images/payments/Visa-Debit.png" alt="Visa Debit"/>
+                    <img src="images/payments/MasterCard-Debit.png" alt="MasterCard Debit" style="height: 26px;"/>
+                    <img src="images/payments/Sofort.png" alt="Sofort"/>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <h5>{{ 'FOOTER.CONNECT' | translate }}</h5>
+                <div class="connect">
+                    <a href="https://www.facebook.com" target="_blank">
+                        <img src="images/social_icons/facebook.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

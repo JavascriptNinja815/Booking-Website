@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>VliegDutch</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/materialize/bin/materialize.css" />
+    <link rel="stylesheet" href="/bower_components/angularjs-slider/dist/rzslider.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- build:css styles/booking-page.css -->
+    <link rel="stylesheet" href="styles/booking-page.css">
+    <!-- endbuild -->
+
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <nav class="main-nav">
+      <div class="nav-wrapper">
+        <a href="index.html" class="brand-logo center">
+          <img src="images/logo/logo.png" alt="VliegDutch" />
+        </a>
+        <a class="modal-trigger nav-btn" href="#nav-modal">
+          <i class="material-icons">menu</i>
+        </a>
+      </div>
+    </nav>
+
+    <div id="payment-page" class="booking-page content">
+      <div class="card progress-card">
+        <div class="row">
+          <a class="col s3" href="#">
+            <i>1</i>Search
+          </a>
+          <a class="col s5" href="#">
+            <i>2</i>Passenger data
+          </a>
+          <a class="col s4 active" href="#">
+            <i>3</i>Payment
+          </a>
+        </div>
+      </div>
+
+      <div class="card passenger-info-card">
+        <div class="header">Contact information</div>
+        <div class="card-content">
+          <span class="label">Name</span>
+          <span class="value">John Smith</span>
+          <span class="label">Email</span>
+          <span class="value">joghnsmith@gmail.com</span>
+          <span class="label">Phone</span>
+          <span class="value">+371 592 23 293</span>
+        </div>
+      </div>
+
+      <div class="card passenger-info-card">
+        <div class="header">Passenger information</div>
+        <div class="card-content">
+          <span class="label">Passenger 1</span>
+          <span class="value">Miesha Tate</span>
+          <span class="label">Passenger 2</span>
+          <span class="value">Conor McGregor</span>
+          <span class="label">Passenger 3</span>
+          <span class="value">Anderson Silva</span>
+        </div>
+      </div>
+
+      <div class="card payment-method-card">
+        <div class="header">Select payment method</div>
+        <div class="card-content">
+          <div class="row">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s3"><a href="#credit-card">Credit card</a></li>
+                <li class="tab col s3"><a href="#ideal" class="active">Ideal</a></li>
+                <li class="tab col s3"><a href="#sofort">Sofort</a></li>
+                <li class="tab col s3"><a href="#paypal">Paypal</a></li>
+              </ul>
+            </div>
+
+            <div id="credit-card" class="col tab-content s12">
+              <form action="#">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <label for="card-number">Credit card number</label>
+                    <input id="card-number" type="text" placeholder="XXXX XXXX XXXX XXXX"/>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field expire-date-fields col s8">
+                    <label for="expiry-date-month">Expiry date</label>
+                    <div>
+                      <input id="expiry-date-month" type="text" placeholder="mm" />
+                      <span class="separator">/</span>
+                      <input id="expiry-date-year" type="text" placeholder="yy" />
+                    </div>
+                  </div>
+
+                  <div class="input-field col s4">
+                    <label for="ccv">CCV</label>
+                    <input id="ccv" type="text" />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s12">
+                    <label for="card-holder">Card holder</label>
+                    <input id="card-holder" type="text" />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s12">
+                    <button type="submit" class="btn btn-block light-blue darken-1 waves-effect waves-light">Pay now</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div id="ideal" class="col tab-content s12">
+              <div class="row">
+                <ul class="payment-options">
+                  <li class="active"><img src="/images/payments/abn-amro.png" /></li>
+                  <li><img src="/images/payments/bung.png" /></li>
+                  <li><img src="/images/payments/ing.png" /></li>
+                  <li><img src="/images/payments/asn-bank.png" /></li>
+                  <li><img src="/images/payments/rabobank.png" /></li>
+                  <li><img src="/images/payments/knab.png" /></li>
+                  <li><img src="/images/payments/sns.png" /></li>
+                  <li><img src="/images/payments/regio-bank.png" /></li>
+                  <li><img src="/images/payments/triodos-bank.png" /></li>
+                  <li><img src="/images/payments/van-lanschot.png" /></li>
+                </ul>
+              </div>
+              <a href="#" class="btn btn-block light-blue darken-1 waves-effect waves-light">Pay now</a>
+            </div>
+
+            <div id="sofort" class="col tab-content s12">
+              <p>Comming soon</p>
+            </div>
+
+            <div id="paypal" class="col tab-content s12">
+              <img src="/images/payments/PayPal.png" alt="PayPal" />
+              <p>Modi quis eos est cumque. Rerum placeat atque eaque quis possimus. Odio et dolores soluta. Qui amet magni rerum consequatur et quia.</p>
+              <a href="#" class="btn btn-block light-blue darken-1 waves-effect waves-light">Pay now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="nav-modal" class="modal top-sheet">
+      <div class="modal-header card">
+        <a href="#" class="modal-aciton modal-close">
+          <i class="material-icons">close</i>
+        </a>
+        <h4>MENU</h4>
+      </div>
+      <div class="modal-content card">
+        <a href="#" class="btn btn-block light-blue darken-1 waves-effect waves-light search-flights-btn">
+          <i class="material-icons">airplanemode_active</i>
+          SEARCH FLIGHTS
+        </a>
+        <a href="#" class="btn btn-block light-blue darken-1 waves-effect waves-light">
+          E-TICKET
+        </a>
+        <div class="row bottom-elements">
+          <div class="col s5 language-selectors">
+            <a class="btn btn-round waves-effect" href="#">NL</a>
+            <a class="btn btn-round active" href="#">EN</a>
+          </div>
+          <div class="col s7 contact-info">
+            <h5>
+              <i class="material-icons">smartphone</i>
+              0900 2365254
+            </h5>
+            <small>Mon - Fri 08:00 - 18:00</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/materialize/bin/materialize.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/moment-range/dist/moment-range.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-bindonce/bindonce.js"></script>
+    <script src="/bower_components/angular-filter/dist/angular-filter.js"></script>
+    <script src="/bower_components/angularjs-slider/dist/rzslider.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/tooltip.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

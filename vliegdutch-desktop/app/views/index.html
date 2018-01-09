@@ -1,0 +1,311 @@
+<go-top top="1700"></go-top>
+<div id="index-page">
+    <div class='search-block'>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-sm-12 col-md-12'>
+                    <h1>{{ 'INDEX.SEARCH_HEADER' | translate }}</h1>
+                    <search-form></search-form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="benefits">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 benefit-item benefit-item-1">
+                <div>
+                    <img src='images/benefits/benefits_item_1.png' alt="Free Cancellation"/>
+                    <div class="benefit-wrapper">
+                        <h2>{{ 'INDEX.FREE' | translate }}</h2>
+                        <h4>{{ 'INDEX.TRAVEL_CANCELLATION' | translate }}</h4>
+                    </div>
+                </div>
+                <p class="info-text">{{ 'INDEX.TRAVEL_CANCELLATION_TEXT' | translate }}</p>
+            </div>
+            <div class="col-md-4 col-sm-4 benefit-item benefit-item-2">
+                <div>
+                    <img src='images/benefits/benefits_item_2.png' alt="Online check-in"/>
+                    <div class="benefit-wrapper">
+                        <h2>{{ 'INDEX.FREE' | translate }}</h2>
+                        <h4>{{ 'INDEX.ONLINE_CHECKIN' | translate }}</h4>
+                    </div>
+                </div>
+                <p class="info-text">
+                    {{ 'INDEX.ONLINE_CHECKIN_TEXT_1' | translate }}
+                    <br/>
+                    {{ 'INDEX.ONLINE_CHECKIN_TEXT_2' | translate }}
+                </p>
+            </div>
+            <div class="col-md-4 colsm-4 benefit-item benefit-item-3">
+                <div>
+                    <img src='images/benefits/benefits_item_3.png' alt="€9.99 Transation fee"/>
+                    <div class="benefit-wrapper">
+                        <h2>€15</h2>
+                        <h4>{{ 'INDEX.TRANSACTION_FEE' | translate }}</h4>
+                    </div>
+                </div>
+                <p class="info-text">
+                    {{ 'INDEX.TRANSACTION_FEE_TEXT_1' | translate }}
+                    <br/>
+                    {{ 'INDEX.TRANSACTION_FEE_TEXT_2' | translate }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="cheapest-flights">
+        <div class='container'>
+            <div class="col-md-12 col-sm-12">
+                <div class="row">
+                    <h1>{{ 'INDEX.DEPART_FROM' | translate }}</h1>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li ng-class="{active: offersFrom == 'AMS'}">
+                            <a ng-click="setOffersFrom('AMS')">Amsterdam</a>
+                        </li>
+                        <li ng-class="{active: offersFrom == 'EIN'}">
+                            <a ng-click="setOffersFrom('EIN')">Eindhoven</a>
+                        </li>
+                        <li ng-class="{active: offersFrom == 'RTM'}">
+                            <a ng-click="setOffersFrom('RTM')">Rotterdam</a>
+                        </li>
+                        <li ng-class="{active: offersFrom == 'BRU'}">
+                            <a ng-click="setOffersFrom('BRU')">Brussels</a>
+                        </li>
+                        <li ng-class="{active: offersFrom == 'DUS'}">
+                            <a ng-click="setOffersFrom('DUS')">Weeze</a>
+                        </li>
+                    </ul>
+                    <div class='cheapest-flights-options'>
+                        <input ng-model="offersType" value="one-way" type="radio" id="offers-one-way">
+                        <label for="offers-one-way"><span></span>{{ 'SEARCH.ONE_WAY' | translate }}</label>
+                        <input ng-model="offersType" value="round-trip" type="radio" id="offers-round">
+                        <label for="offers-round"><span></span>{{ 'SEARCH.ROUND_TRIP' | translate }}</label>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                {{offersMonth ? monthName(offersMonth) : 'Filter by month'}}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="m in offersMonths">
+                                    <a ng-click="setOffersMonth(m)">{{monthName(m)}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div id="hot-fares" class='panel offers-panel red'>
+                                <div class="panel-heading">
+                                    <img class="icon" src="images/offers/hot-fares_red.png" alt="Hot fares"/>
+                                    Hot fares
+                                </div>
+                                <div class="panel-content">
+                                    <div class="loader" ng-if="!cheapFlights"></div>
+                                    <div class='row' ng-if="cheapFlights">
+                                        <div class='col-md-6 col-sm-6'>
+                                            <ul ng-if="cheapFlights" class="list-unstyled no_margin offers-list blue-1">
+                                                <li ng-repeat="flight in cheapFlights | limitTo:5">
+                                                    <a ng-click="searchByFlight(flight)">
+                                                        <span class="title">{{flight.arrival_city.name}}</span>
+                                                        <span class="price">
+                            <small>{{ 'INDEX.FROM' | translate }}</small>
+                            <strong class="text-red">
+                              <small>€</small>
+                              <span>{{flight.price.amount_display}}</span>
+                            </strong>
+                          </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class='col-md-6 col-sm-6'>
+                                            <ul ng-if="cheapFlights" class="list-unstyled no_margin offers-list blue-1">
+                                                <li ng-repeat="flight in cheapFlights | limitTo:5:5">
+                                                    <a ng-click="searchByFlight(flight)">
+                                                        <span class="title">{{flight.arrival_city.name}}</span>
+                                                        <span class="price">
+                            <small>{{ 'INDEX.FROM' | translate }}</small>
+                            <strong class="text-red">
+                              <small>€</small>
+                              <span>{{flight.price.amount_display}}</span>
+                            </strong>
+                          </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a class='more-cheap-flights'
+                                       ng-if="cheapFlights"
+                                       ui-sref="price_calendar({departureCity: offersFrom})">
+                                        {{ 'INDEX.MORE_CHEAP_FLIGHTS' | translate}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div id="holiday-destinations" class='panel offers-panel orange'>
+                                <div class="panel-heading">
+                                    <img class="icon" src="images/offers/holiday-destinations.png"
+                                         alt="Holiday distanations"/>
+                                    Holiday destinations
+                                </div>
+                                <div class="panel-content">
+                                    <div class="loader" ng-if="!holidayFlights"></div>
+                                    <ul ng-if="holidayFlights" class="list-unstyled no_margin offers-list orange">
+                                        <li ng-repeat="flight in holidayFlights | limitTo:5">
+                                            <a ng-click="searchByFlight(flight)">
+                                                <span class="title">{{flight.arrival_city.name}}</span>
+                                                <span class="price">
+                        <small>{{ 'INDEX.FROM' | translate }}</small>
+                        <strong class="text-red">
+                          <small>€</small>
+                          <span>{{flight.price.amount_display}}</span>
+                        </strong>
+                      </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <a class='more-cheap-flights'
+                                       ng-if="holidayFlights"
+                                       ui-sref="price_calendar({departureCity: offersFrom, type: 'holiday'})">
+                                        {{'INDEX.MORE_CHEAP_FLIGHTS' | translate }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div id="long-distance" class='panel offers-panel pink'>
+                                <div class="panel-heading">
+                                    <img class="icon" src="images/offers/long-distance.png" alt="Long distance"/>
+                                    Long distance
+                                </div>
+                                <div class="panel-content">
+                                    <div class="loader" ng-if="!longDistanceFlights"></div>
+                                    <ul ng-if="longDistanceFlights" class="list-unstyled no_margin offers-list pink">
+                                        <li ng-repeat="flight in longDistanceFlights | limitTo:5">
+                                            <a ng-click="searchByFlight(flight)">
+                                                <span class="title">{{flight.arrival_city.name}}</span>
+                                                <span class="price">
+                        <small>{{ 'INDEX.FROM' | translate }}</small>
+                        <strong class="text-red">
+                          <small>€</small>
+                          <span>{{flight.price.amount_display}}</span>
+                        </strong>
+                      </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <a class='more-cheap-flights'
+                                       ng-if="longDistanceFlights"
+                                       ui-sref="price_calendar({departureCity: offersFrom, type: 'long_distance'})">
+                                        {{'INDEX.MORE_CHEAP_FLIGHTS' | translate }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="fares-notice">{{ 'INDEX.FARES_NOTICE' | translate }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="value-by-customers">
+        <div class="container">
+            <div class="row hidden-xs">
+                <h1>{{ 'INDEX.VALUE_HEADER' | translate }}</h1>
+                <div id="owlCarouselOne" class="owl-carousel owl-theme">
+                    <div class="item col-md-12 col-sm-12">
+                        <img class="icon" src="images/value_by/plane.png"/>
+                        <p>{{ 'INDEX.VALUE_1' | translate }}</p>
+                    </div>
+                    <div class="item col-md-12 col-sm-12">
+                        <img class="icon" src="images/value_by/elipses.png"/>
+                        <p>{{ 'INDEX.VALUE_2' | translate }}</p>
+                    </div>
+                    <div class="item col-md-12 col-sm-12">
+                        <img class="icon" src="images/value_by/free.png"/>
+                        <p>{{ 'INDEX.VALUE_3' | translate }}</p>
+                    </div>
+                    <div class="item col-md-12 col-sm-12">
+                        <img class="icon" src="images/value_by/alert.png"/>
+                        <p>{{ 'INDEX.VALUE_4' | translate }}</p>
+                    </div>
+                    <div class="item col-md-12 col-sm-12">
+                        <img class="icon" src="images/value_by/alert_2.png"/>
+                        <p>{{ 'INDEX.VALUE_5' | translate }}</p>
+                    </div>
+                    <div class="item col-md-12 col-sm-12">
+                        <img class="icon" src="images/value_by/plane_2.png"/>
+                        <p>{{ 'INDEX.VALUE_6' | translate }}</p>
+                    </div>
+
+                    <div class="item col-md-12 col-sm-12">
+                        <img class="icon" src="images/value_by/free_2.png"/>
+                        <p>{{ 'INDEX.VALUE_7' | translate }}</p>
+                    </div>
+                    <div class="item col-md-12 col-sm-12">
+                        <img class="icon" src="images/value_by/elipses_2.png"/>
+                        <p>{{ 'INDEX.VALUE_8' | translate }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="special-offers">
+        <div class="container">
+            <h3>{{ 'INDEX.SPECIAL_OFFERS' | translate }}</h3>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div id="offers-carousel" class="carousel slide">
+                        <div class="row">
+                            <div class="col-md-10 col-sm-10 col-md-push-1 col-sm-push-1">
+                                <div id="owlCarouselTwo" class="owl-carousel owl-theme carousel-inner">
+                                    <div class="item" ng-repeat="supplier in suppliers">
+                                        <div class='panel offers-panel' ng-class="[supplier.key]">
+                                            <div class="panel-heading">
+                                                <span>{{supplier.name}}</span>
+                                                <img class="airline-icon pull-right"
+                                                     ng-src="images/carriers/{{supplier.key}}.png" alt="Ryanair"/>
+                                            </div>
+                                            <!--<div class="loader" ng-if="!supplier.data"></div>-->
+                                            <div class="panel-content" ng-if="supplier.data">
+
+                                                <ul class="list-unstyled offers-list">
+                                                    <li ng-repeat="result in supplier.data | limitTo:3">
+                                                        <a ng-click="searchByFlight(result)">
+                                                            <span class="title">{{result.arrival_city.name}}</span>
+                                                            <span class="price">
+                              <small>{{ 'INDEX.FROM' | translate }}</small>
+                              <strong>
+                                <small>€</small>{{result.price.amount_display}}
+                              </strong>
+                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 links-block">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3" ng-repeat="offersBlock in offersCities">
+                                        <ul class="list-unstyled">
+                                            <li ng-repeat="offer in offersBlock">
+                                                <a ui-sref="price_calendar({departureCity: 'AMS', arrivalCity: offer.cityCode})">
+                                                    <i class="material-icons tiny">place</i>
+                                                    <span>{{ 'INDEX.CHEAP_FLIGHTS_TO' | translate }} <strong>{{offer.city}}</strong></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

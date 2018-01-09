@@ -1,0 +1,79 @@
+<div class="modal" ng-class="{visible: show}" id="passengers-selecting-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" ng-click="show = false"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="passengersModalTitle"> {{ flight.departure_city.name }} - {{
+                    flight.arrival_city.name }} <span
+                            ng-if="flight.comeback_date"> - {{ flight.departure_city.name }}</span></h3>
+                <br>
+                <table class="table table-borderless passangers-table">
+                    <tr>
+                        <td>{{ 'PASSENGERS_SELECTION.DATE' | translate }}</td>
+                        <td>{{ 'PASSENGERS_SELECTION.DEPARTURE' | translate }}</td>
+                        <td>{{ 'PASSENGERS_SELECTION.ARRIVAL' | translate }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ flight.departure_date }}</td>
+                        <td>{{ flight.departure_city.name }}</td>
+                        <td>{{ flight.arrival_city.name }}</td>
+                    </tr>
+                </table>
+
+                <br>
+
+                <table class="table table-borderless passangers-table" ng-if="flight.comeback_date">
+                    <tr>
+                        <td>{{ 'PASSENGERS_SELECTION.DATE' | translate }}</td>
+                        <td>{{ 'PASSENGERS_SELECTION.DEPARTURE' | translate }}</td>
+                        <td>{{ 'PASSENGERS_SELECTION.ARRIVAL' | translate }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ flight.comeback_date }}</td>
+                        <td>{{ flight.arrival_city.name }}</td>
+                        <td>{{ flight.departure_city.name }}</td>
+                    </tr>
+                </table>
+
+
+            </div>
+            <div class="modal-body">
+                <p>{{ 'PASSENGERS_SELECTION.TEXT' | translate }}</p>
+
+                <table class="passengers-count">
+                    <tr>
+                        <td>{{ 'PASSENGERS_SELECTION.ADULTS' | translate }}</td>
+                        <td>{{ 'PASSENGERS_SELECTION.CHILDREN' | translate }}</td>
+                        <td>{{ 'PASSENGERS_SELECTION.BABIES' | translate }}</td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                            <select class="form-control" name="adults" id="adults" ng-model="passenger.adult"
+                                    ng-init="passenger.adult = count[0]" ng-options="c for c in count"></select>
+                        </td>
+                        <td>
+                            <select class="form-control" name="children" id="children" ng-model="passenger.children"
+                                    ng-init="passenger.children = count[0]" ng-options="c for c in count"></select>
+                        </td>
+                        <td>
+                            <select class="form-control" name="babies" id="babies" ng-model="passenger.baby"
+                                    ng-init="passenger.baby = count[0]" ng-options="c for c in count"></select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <span class="circle-icon"><i class="fa fa-info" aria-hidden="true"></i>{{ 'PASSENGERS_SELECTION.CACHE_PRICE' | translate }}</span>
+                <span ng-if="showPrice" class="flight-amount">€ {{flight.price.amount_display}}</span>
+                <button type="button" class="btn btn-primary" ng-click="continue()">{{ 'PASSENGERS_SELECTION.CONTINUE' |
+                    translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
